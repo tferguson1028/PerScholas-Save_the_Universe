@@ -1,9 +1,0 @@
-class GameLoop
-{
-  static update()
-  {
-    
-  }
-}
-
-
