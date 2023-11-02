@@ -5,21 +5,25 @@ class Ship
   accuracy;
   constructor(hull, firepower, accuracy)
   {
-    this.hull = hull;
-    this.firepower = firepower;
-    this.accuracy = accuracy;
+    this.hull = this.forceUsableNumber(hull);
+    this.firepower = this.forceUsableNumber(firepower);
+    this.accuracy = this.forceUsableNumber(accuracy);
   }
   
   
-  doAttack()
+  doAttack(receiver)
   {
+    if(!(receiver instanceof Ship))
+      return;
     
+    
+    receiver.receiveDamage(this.firepower);
   }
   
-  recieveDamage()
-  {
-    
-  }
+  receiveDamage(damage) { this.hull -= this.forceUsableNumber(damage); }
+  
+  // I just want to make sure I'm using 2 decimal numbers everywhere.
+  forceUsableNumber(value) { return Number(Number(value).toFixed(2)); }
 }
 
 class PlayerShip extends Ship
@@ -42,9 +46,9 @@ class EnemyShip extends Ship
   }
 }
 
-// testEnemeyCreationValues();
+// testEnemyCreationValues();
 
-function testEnemeyCreationValues()
+function testEnemyCreationValues()
 {
   let minVals = [10, 10, 10];
   let maxVals = [0, 0, 0];
@@ -61,7 +65,7 @@ function testEnemeyCreationValues()
     maxVals[2] = e.accuracy > maxVals[2] ? e.accuracy : maxVals[2];
   }
 
-  console.log("Testing Enemey Creation values. Expected output should be around these values");
+  console.log("Testing Enemy Creation values. Expected output should be around these values");
   console.log("[ 3, 2, 0.6 ]");
   console.log("[ 6, 4, 0.8 ]\n");
   console.log(minVals); // Expected Output
