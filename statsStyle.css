@@ -1,0 +1,9 @@
+#statsInformation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+#statsInformation > * {
+  flex: 1;
+}

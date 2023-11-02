@@ -1,0 +1,31 @@
+/* This file is for debugging purposes */
+
+body {
+  border: 1px dashed #ff0000;
+}
+
+body > * {
+  border: 1px dashed #0000ffaa;
+  background-color: #00008855;
+  
+}
+
+body > * > *
+{
+  border: 1px dashed #ffff00aa;
+  background-color: #88880099;
+}
+
+body > * > * *
+{
+  border: 1px dashed #00ffff55;
+  background-color: #00888855;
+}
+
+.debugVisual {
+  flex: 0 !important; 
+  display: initial !important;
+  color: #FF00FF !important;
+  border: unset !important;
+  background-color: unset !important;
+}

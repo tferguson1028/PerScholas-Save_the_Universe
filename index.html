@@ -4,50 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Space Game - Tesean Ferguson</title>
+  
+  <!-- # Styles -->
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="battleVisuals.css">
-  <!-- #Initialization of functions and classes -->
+  <link rel="stylesheet" href="statsStyle.css">
+  <link rel="stylesheet" href="battleStyle.css">
+  
+  <!-- # Initialization of functions and classes -->
   <script src="shipClass.js" defer></script>
   <script src="stepScript.js"></script>
   <script src="initialize.js" defer></script>
   
-  <!-- #Initialization of listeners -->
+  <!-- # Initialization of listeners -->
+
+  <!-- # Debugging Files - Comment Out to disable -->
+  <link rel="stylesheet" href="structureVisualization.css">
 </head>
+
 <body>
   <!-- # Game Information -->
   <header id="statsInformation">
-    STATS
+    <span class="debugVisual">STATS SECTION</span>
     <section class="shipStats">
-      SHIP 1 STATS
+      <span class="debugVisual">SHIP 1 STATS</span>
     </section>
     <section class="shipStats">
-      SHIP 2 STATS
+      <span class="debugVisual">SHIP 2 STATS</span>
     </section>
   </header>
   
   <!-- # Visuals -->
   <main id="gameArea">
-    MAIN
+    <!-- <span class="debugVisual">MAIN SECTION</span> -->
     <section id="battleVisuals">
+      
+      <!-- Player Ship -->
       <div class="shipView">
-        <div class="shipTitle">SHIP NAME</div>
-        <div class="shipImage">SHIP IMAGE</div>
-        <div class="shipHealth">HEALTH BAR</div>
+        <div class="shipTitle">
+          <span class="debugVisual">SHIP NAME</span>
+        </div>
+        <div class="shipImage">
+          <span class="debugVisual">SHIP IMAGE</span>
+        </div>
+        <div class="shipHealth">
+          <span class="debugVisual">HEALTH BAR</span>
+        </div>
       </div>
+      
+      <!-- Enemy Ship -->
       <div class="shipView">
-        <div class="shipTitle">SHIP NAME</div>
-        <div class="shipImage">SHIP IMAGE</div>
-        <div class="shipHealth">HEALTH BAR</div>
+        <div class="shipTitle">
+          <span class="debugVisual">SHIP NAME</span>
+        </div>
+        <div class="shipImage">
+          <span class="debugVisual">SHIP IMAGE</span>
+        </div>
+        <div class="shipHealth">
+          <span class="debugVisual">HEALTH BAR</span>
+        </div>
       </div>
     </section>
+    
+    <!-- Interactino Area -->
     <section id="userInteraction">
-      INTERACTIVE STUFF
+      <span class="debugVisual">INTERACTIVE SECTION</span>
     </section>
   </main>
   
   <!-- # Asset Credits -->
   <footer id="assetCredits">
-    FOOT
+    <span class="debugVisual">FOOT</span>
   </footer>
 </body>
 </html>
