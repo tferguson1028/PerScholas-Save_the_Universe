@@ -16,6 +16,9 @@ function step(currentActor, action, currentReceiver = undefined)
     printConsoleMessage("An unknown error has occurred! Please reload the browser window.");
   }
   
+  if(currentActor instanceof EnemyShip)
+    action = actions[Math.floor(Math.random()*actions.length)];
+  
   let actorName = stringAsName(currentActor.name);
   let receiverName = stringAsName(currentReceiver.name);
   switch(action)
@@ -28,11 +31,19 @@ function step(currentActor, action, currentReceiver = undefined)
         case false: printConsoleMessage(`${actorName} misses`); break;
         default: printConsoleMessage("An unknown error has occurred! Please reload the browser window.");
       } 
-      return true;
+      break;
     case "defend": currentActor.doDefend(); break;
     case "heal": break; 
     case "charge": break;
   }
   
-  
+  updateHullVisuals(currentActor, 0);
+  updateHullVisuals(currentReceiver, 0);
+
+  if(checkBattleFinished())
+  {
+    
+  }else{
+    alternateTurn();
+  }
 }

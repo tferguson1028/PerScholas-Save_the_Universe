@@ -23,6 +23,50 @@ const ships = {
   // "assets/sprites/enemy_ship_type1/bases/Nairan - Scout - Base.png"
 };
 
+
+//# Functionality Functions
+function checkBattleFinished()
+{
+  if(typeof currentPlayer !== "undefined" && currentPlayer.hullPercentage() <= 0)
+  {
+    gameOverSequence(currentPlayer);
+    return true;
+  }
+  
+  if(typeof currentAlien !== "undefined" && currentAlien.hullPercentage <= 0)
+  {
+    gameNextBattleSequence(currentAlien);
+    setInBattle(false);
+    return true;
+  }
+  
+  return false;
+}
+
+function alternateTurn()
+{
+  let temp = currentTurnActor;
+  currentTurnActor = currentTurnReceiver;
+  currentTurnReceiver = temp;
+  
+  printConsoleMessage(`It's ${stringAsName(currentTurnActor.name)}'s turn to attack!`);
+}
+
+function setInBattle(bool)
+{
+  if(bool)
+  {
+    document.querySelectorAll(".battleMode").forEach((el) => el.style.display = "inline-block");
+    document.querySelectorAll(".passiveMode").forEach((el) => el.style.display = "none");
+  }else
+  {
+    document.querySelectorAll(".battleMode").forEach((el) => el.style.display = "none");
+    document.querySelectorAll(".passiveMode").forEach((el) => el.style.display = "inline-block");
+  }
+}
+
+
+//# Visual Functions
 function attachShip(shipObject, section, shipType = -1, shipVersion = -1, name = shipObject.name)
 {
   let selectedShipSection = shipSections[section];
@@ -44,6 +88,13 @@ function attachShipStats(shipObject, section)
   selectedStatBar.querySelector(".stat-accuracy").querySelector("p").textContent = Number(shipObject.accuracy).toFixed(2);
 }
 
+function updateHullVisuals(actor, section)
+{
+  //TODO
+}
+
+
+//# Delegated Functions
 function printConsoleMessage(message)
 {
   let newMessage = document.createElement("p");

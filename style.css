@@ -59,13 +59,21 @@ body > footer {
 } 
 
 .debugVisual {
-  visibility: hidden;
+  visibility: collapse;
 }
 
 .shipStats {
-  visibility: hidden;
+  visibility: collapse;
 }
 
 .shipView {
-  visibility: hidden;
+  visibility: collapse;
+}
+
+.passiveMode {
+  display: inline-block;
+}
+
+.battleMode {
+  display: none;
 }

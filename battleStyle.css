@@ -104,6 +104,7 @@
   text-transform: uppercase;
 }
 
-#userInteraction > #inputStep {
+/* 
+.userInteraction > #inputStep {
   grid-column: 1 / 3;
-}
+} */
