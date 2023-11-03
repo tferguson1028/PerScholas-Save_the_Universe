@@ -25,12 +25,14 @@ function step(currentActor, action, currentReceiver = undefined)
       {
         case null: printConsoleMessage("Someone is a ghost ship! Please restart the browser window."); break;
         case true: printConsoleMessage(`${actorName} hits ${receiverName} for ${currentActor.firepower} damage!`); break;
-        case false: printConsoleMessage(`${actorName} misses and ${receiverName} retaliates for ${currentReceiver.firepower} damage!`); break;
+        case false: printConsoleMessage(`${actorName} misses`); break;
         default: printConsoleMessage("An unknown error has occurred! Please reload the browser window.");
       } 
       return true;
-    case "defend": currentActor.doDefend(); return true;
-    default: return false;
+    case "defend": currentActor.doDefend(); break;
+    case "heal": break; 
+    case "charge": break;
   }
+  
   
 }

@@ -7,6 +7,7 @@ let gameFinished = false;
 let playerTurn = true;
 
 const shipSections = document.querySelectorAll(".shipView");
+const shipStats = document.querySelectorAll(".shipStats");
 const consoleSection = document.querySelector("#console");
 
 const actionButtons = {
@@ -33,11 +34,13 @@ actionButtons.step.addEventListener("click", function(event)
     printConsoleMessage(`${stringAsName(currentPlayer.name)} readies a ship to embark on a journey!`);
     
     attachShip(currentPlayer, 0, 0, 0);
+    attachShipStats(currentPlayer, 0);
     event.target.textContent = "embark"
   }else if(typeof currentAlien === 'undefined')
   {
     currentAlien = new EnemyShip();
     attachShip(currentAlien, 1, 1);
+    attachShipStats(currentAlien, 1);
     printConsoleMessage("An enemy vessel has appeared to block your path! What will you do?");
     event.target.textContent = "onwards"
   }else

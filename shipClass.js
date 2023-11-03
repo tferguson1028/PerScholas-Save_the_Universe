@@ -4,6 +4,7 @@ class Ship
   {
     this.name = name;
     this.hull = this.forceUsableNumber(hull);
+    this.hullMax = this.hull;
     this.firepower = this.forceUsableNumber(firepower);
     this.accuracy = this.forceUsableNumber(accuracy);
   }
@@ -14,7 +15,7 @@ class Ship
     if(!(receiver instanceof Ship))
       return null;
     
-    if(Math.random() < this.accuracy)
+    if(this.takeShot())
     {
       receiver.receiveDamage(this.firepower);
       return true;
@@ -25,9 +26,11 @@ class Ship
   }
   
   receiveDamage(damage) { this.hull -= this.forceUsableNumber(damage); }
+  hullPercentage() { return this.hull / this.hullMax; }
+  takeShot() { return Math.random() <= this.accuracy; }
   
   // I just want to make sure I'm using 2 decimal numbers everywhere.
-  forceUsableNumber(value) { return Number(Number(value).toFixed(2)); }
+  forceUsableNumber(value) { return Number(Number(value).toFixed(2)); }  
 }
 
 class PlayerShip extends Ship

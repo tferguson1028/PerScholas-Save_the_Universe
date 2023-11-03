@@ -23,19 +23,25 @@ const ships = {
   // "assets/sprites/enemy_ship_type1/bases/Nairan - Scout - Base.png"
 };
 
-function attachShip(ship, section, shipType = -1, shipVersion = -1, name = ship.name)
+function attachShip(shipObject, section, shipType = -1, shipVersion = -1, name = shipObject.name)
 {
-  let nameDiv = shipSections[section].querySelector(".shipTitle");
-  let imageDiv = shipSections[section].querySelector(".shipImage");
+  let selectedShipSection = shipSections[section];
+  selectedShipSection.style.visibility = "visible";
+  let nameDiv = selectedShipSection.querySelector(".shipTitle");
+  let imageDiv = selectedShipSection.querySelector(".shipImage");
   let shipImage = getShip(shipType, shipVersion); 
   
   nameDiv.textContent = stringAsName(name);
   imageDiv.src = shipImage;
 }
 
-function attachShipStats(ship, section, name = ship.name)
+function attachShipStats(shipObject, section)
 {
-  
+  let selectedStatBar = shipStats[section];
+  selectedStatBar.style.visibility = "visible";
+  selectedStatBar.querySelector(".stat-hull").querySelector("p").textContent = Number(shipObject.hull).toFixed(2);
+  selectedStatBar.querySelector(".stat-firepower").querySelector("p").textContent = Number(shipObject.firepower).toFixed(2);
+  selectedStatBar.querySelector(".stat-accuracy").querySelector("p").textContent = Number(shipObject.accuracy).toFixed(2);
 }
 
 function printConsoleMessage(message)
