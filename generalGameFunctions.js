@@ -21,7 +21,7 @@ const ships = {
 //# Functionality Functions
 function doAlienStep()
 {
-  setTimeout(step, 3000, currentAlien, undefined, currentPlayer);
+  setTimeout(step, 1800, currentAlien, undefined, currentPlayer);
 }
 
 function battleFinishedSequence()
@@ -61,11 +61,18 @@ function alternateTurn()
 function gameCompleteSequence()
 {
   //TODO
+  printConsoleMessage("The battle is finished. All hostile vessels have been eliminated.");
+}
+
+function retreatSequence()
+{
+  printConsoleMessage("You flee the battle.");
 }
 
 function gameOverSequence()
 {
   //TODO  
+  printConsoleMessage("Your ship was destroyed. You float for eternity in the endless abyss of space.");
 }
 
 function shipDefeatedSequence(section)
@@ -116,9 +123,16 @@ function attachShipStats(shipObject, section)
   selectedStatBar.querySelector(".stat-accuracy").querySelector("p").textContent = Number(shipObject.accuracy).toFixed(2);
 }
 
-function updateHullVisuals(actor, section)
+function updateHullVisuals(shipObject, section)
 {
-  //TODO
+  shipHealth = shipSections[section].querySelector(".shipHealth");
+  shipHealth.style.width = `${shipObject.hullPercentage()*100}%`;
+}
+
+function updateBattleHud()
+{
+  if(typeof currentPlayer !== "undefined") updateHullVisuals(currentPlayer, 0);
+  if(typeof currentAlien !== "undefined") updateHullVisuals(currentAlien, 1);
 }
 
 

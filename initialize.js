@@ -38,10 +38,12 @@ actionButtons["inputStep"].addEventListener("click", function(event)
     
     attachShip(currentPlayer, 0, 0, 0);
     attachShipStats(currentPlayer, 0);
+    updateHullVisuals(currentPlayer, 0);
+    
     event.target.textContent = "embark";
   }else if(typeof currentAlien === 'undefined')
   {
-    if(alienCount > numAliens)
+    if(alienCount >= numAliens)
     {
       gameCompleteSequence();
       return;
@@ -53,15 +55,15 @@ actionButtons["inputStep"].addEventListener("click", function(event)
     attachShip(currentAlien, 1, 1);
     attachShipStats(currentAlien, 1);
     printConsoleMessage(`The ${toOrdinal(++alienCount)} enemy vessel has appeared to block your path! What will you do?`);
+    updateHullVisuals(currentAlien, 1);
     setInBattle(true);
-
     event.target.textContent = "onwards"
   }else
   {
     console.log(typeof currentAlien);
     console.log(currentAlien);
     printConsoleMessage("You cannot continue until the fight is finished!");
-  }
+  }  
 });
 
 actionButtons["inputFlee"].addEventListener("click", function(event)

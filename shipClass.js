@@ -9,6 +9,7 @@ class Ship
     this.accuracy = this.forceUsableNumber(accuracy);
     
     this.defending = false;
+    this.charged = false;
   }
   
   
@@ -19,28 +20,31 @@ class Ship
     
     if(this.takeShot())
     {
-      receiver.receiveDamage(this.firepower);
+      if(this.charged)
+        receiver.receiveDamage(this.firepower*1.5);
+      else
+        receiver.receiveDamage(this.firepower);
+      this.charged = false;
       return true;
     }else
     {
+      this.charged = false;
       return false;
     }
   }
   
-  doDefend()
-  {
-    
-  }
-  
   doRepair()
   {
-  
+    let repair = this.forceUsableNumber(Math.random()*((this.hull/2) - (this.hull/6)) + (this.hull/6));
+    if(this.charged)
+      repair *= 2;
+    
+    this.charged = false;
+    this.hull = Math.min(this.hullMax, this.hull + repair);
   }
   
-  doCharge()
-  {
-  
-  }
+  doDefend() { this.defending = true; }
+  doCharge() { this.charged = true; }
   
   receiveDamage(damage) 
   { 
@@ -48,9 +52,10 @@ class Ship
       this.hull -= this.forceUsableNumber(damage/2); 
     else
       this.hull -= this.forceUsableNumber(damage);
+    this.defending = false;
   }
   
-  hullPercentage() { return this.hull / this.hullMax; }
+  hullPercentage() { return Math.max(0, this.hull) / this.hullMax; }
   takeShot() { return Math.random() <= this.accuracy; }
   
   // I just want to make sure I'm using 2 decimal numbers everywhere.

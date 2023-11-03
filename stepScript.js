@@ -33,7 +33,8 @@ function step(currentActor, action, currentReceiver = undefined)
   let receiverName = "";
   if(!typeof currentReceiver === "undefined")
     receiverName = stringAsName(currentReceiver.name);
-    
+  
+  updateBattleHud();
   switch(action)
   {
     case "attack":
@@ -64,9 +65,8 @@ function step(currentActor, action, currentReceiver = undefined)
     default:
       printConsoleMessage(`Some happened with ${actorName}'s ship, They could not act!`);
   }
-  
-  updateHullVisuals(currentActor, 0);
-  updateHullVisuals(currentReceiver, 1);
+
+  updateBattleHud();
   battleFinishedSequence();
   return true;
 }
