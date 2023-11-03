@@ -14,8 +14,14 @@ class Ship
     if(!(receiver instanceof Ship))
       return null;
     
-    
-    receiver.receiveDamage(this.firepower);
+    if(Math.random() < this.accuracy)
+    {
+      receiver.receiveDamage(this.firepower);
+      return true;
+    }else
+    {
+      return false;
+    }
   }
   
   receiveDamage(damage) { this.hull -= this.forceUsableNumber(damage); }
