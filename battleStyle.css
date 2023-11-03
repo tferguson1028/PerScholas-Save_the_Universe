@@ -26,10 +26,13 @@
   flex-direction: column;
   padding: 8px 0 0 0;
   border: 1px solid #d5d5d5;
+  
+  overflow: visible;
 }
 
 #battleVisuals > .shipView > * {
   flex-basis: 15%;
+  overflow: visible;
   margin: 2px;
 }
 
