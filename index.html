@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="statsStyle.css">
   <link rel="stylesheet" href="battleStyle.css">
+  <link rel="stylesheet" href="footerStyle.css">
+  <link rel="stylesheet" href="backgroundStyle.css">
   
   <!-- # Initialization of functions and classes -->
   <script src="shipClass.js" defer></script>
@@ -18,13 +20,17 @@
   <!-- # Initialization of listeners -->
 
   <!-- # Debugging Files - Comment Out to disable -->
-  <link rel="stylesheet" href="structureVisualization.css">
+  <!-- <link rel="stylesheet" href="structureVisualization.css"> -->
 </head>
 
 <body>
+  <!-- # Background -->
+  <div id="background">
+  </div>
+
   <!-- # Game Information -->
   <header id="statsInformation">
-    <span class="debugVisual">STATS SECTION</span>
+    <!-- <span class="debugVisual">STATS SECTION</span> -->
     <section class="shipStats">
       <span class="debugVisual">SHIP 1 STATS</span>
     </section>
@@ -67,13 +73,21 @@
     
     <!-- Interactino Area -->
     <section id="userInteraction">
-      <span class="debugVisual">INTERACTIVE SECTION</span>
+      <!-- <span class="debugVisual">INTERACTIVE SECTION</span> -->
+      <button id="inputAttack">ATTACK</button>
+      <button id="inputAttack">ATTACK</button>
+      <button id="inputAttack">ATTACK</button>
+      <button id="inputAttack">ATTACK</button>
+      <button id="inputAttack">ATTACK</button>
+      <button id="inputAttack">ATTACK</button>
     </section>
   </main>
   
-  <!-- # Asset Credits -->
-  <footer id="assetCredits">
-    <span class="debugVisual">FOOT</span>
+  <!-- # Footer Page Info -->
+  <footer id="pageInformation">
+    <!-- <span class="debugVisual">FOOT</span> -->
+    <span class="devCredits">Info about the dev</span>
+    <span class="assetCredits">Info about the assets</span>
   </footer>
 </body>
 </html>
