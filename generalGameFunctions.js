@@ -15,31 +15,34 @@ const ships = {
     "assets/sprites/enemy_ship_type1/bases/Nairan - Support Ship - Base.png",
     "assets/sprites/enemy_ship_type1/bases/Nairan - Torpedo Ship - Base.png"
   ]
-  
-  //  "assets/sprites/player_ship/bases/Main Ship - Base - Slight damage.png",
-  // "assets/sprites/enemy_ship_type1/bases/Nairan - Battlecruiser - Base.png",
-  // "assets/sprites/enemy_ship_type1/bases/Nairan - Bomber - Base.png",
-  // "assets/sprites/enemy_ship_type1/bases/Nairan - Dreadnought - Base.png",
-  // "assets/sprites/enemy_ship_type1/bases/Nairan - Scout - Base.png"
 };
 
 
 //# Functionality Functions
-function checkBattleFinished()
+function doAlienStep()
+{
+  setTimeout(step, 3000, currentAlien, undefined, currentPlayer);
+}
+
+function battleFinishedSequence()
 {
   if(typeof currentPlayer !== "undefined" && currentPlayer.hullPercentage() <= 0)
   {
-    gameOverSequence(currentPlayer);
+    shipDefeatedSequence(0);
+    currentPlayer = undefined;
+    gameOverSequence();
     return true;
   }
   
-  if(typeof currentAlien !== "undefined" && currentAlien.hullPercentage <= 0)
+  if(typeof currentAlien !== "undefined" && currentAlien.hullPercentage() <= 0)
   {
-    gameNextBattleSequence(currentAlien);
+    shipDefeatedSequence(1);
+    currentAlien = undefined;
     setInBattle(false);
     return true;
   }
   
+  alternateTurn();
   return false;
 }
 
@@ -49,7 +52,32 @@ function alternateTurn()
   currentTurnActor = currentTurnReceiver;
   currentTurnReceiver = temp;
   
+  if(currentTurnActor === currentPlayer)
+    document.querySelectorAll("#userInteraction").forEach((btn) => btn.disabled = true);
+  
   printConsoleMessage(`It's ${stringAsName(currentTurnActor.name)}'s turn to attack!`);
+}
+
+function gameCompleteSequence()
+{
+  //TODO
+}
+
+function gameOverSequence()
+{
+  //TODO  
+}
+
+function shipDefeatedSequence(section)
+{
+  shipStats[section].style.visibility = "collapse";
+  shipSections[section].style.visibility = "collapse";
+}
+
+function gameNextBattleSequence(defeatedActor)
+{
+  //TODO
+  
 }
 
 function setInBattle(bool)
@@ -125,6 +153,17 @@ function stringAsName(name)
     retName += nameArr[i];
   }
   return retName;
+}
+
+function toOrdinal(number)
+{
+  switch(Math.floor(Number(number)))
+  {
+    case 1: return "1st";
+    case 2: return "2nd";
+    case 3: return "3rd";
+    default: return `${Math.floor(Number(number))}th`;
+  }
 }
 
 function getShip(type = -1, ver = -1)

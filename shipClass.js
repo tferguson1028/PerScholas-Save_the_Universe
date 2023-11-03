@@ -7,6 +7,8 @@ class Ship
     this.hullMax = this.hull;
     this.firepower = this.forceUsableNumber(firepower);
     this.accuracy = this.forceUsableNumber(accuracy);
+    
+    this.defending = false;
   }
   
   
@@ -25,7 +27,29 @@ class Ship
     }
   }
   
-  receiveDamage(damage) { this.hull -= this.forceUsableNumber(damage); }
+  doDefend()
+  {
+    
+  }
+  
+  doRepair()
+  {
+  
+  }
+  
+  doCharge()
+  {
+  
+  }
+  
+  receiveDamage(damage) 
+  { 
+    if(this.defending)
+      this.hull -= this.forceUsableNumber(damage/2); 
+    else
+      this.hull -= this.forceUsableNumber(damage);
+  }
+  
   hullPercentage() { return this.hull / this.hullMax; }
   takeShot() { return Math.random() <= this.accuracy; }
   

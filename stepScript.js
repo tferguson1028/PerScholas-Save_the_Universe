@@ -2,25 +2,38 @@ function validActor(actor) { return (actor instanceof Ship); }
 
 function step(currentActor, action, currentReceiver = undefined)
 {
-  /* Return null if the currentActor is not a ship
-     Return null if the currentReceiver is not a ship or is not undefined
-  */
+  if(typeof currentActor === "undefined")
+    return;  
+    
   if(!(validActor(currentActor)))
   {
     printConsoleMessage(`There is no ship to ${action} with.`);
-    return false;
+    return;
   }
   
   if(!(validActor(currentReceiver) || typeof currentReceiver === 'undefined'))
   {
     printConsoleMessage("An unknown error has occurred! Please reload the browser window.");
+    return;
+  }
+  
+  if(currentActor !== currentTurnActor)
+  {
+    printConsoleMessage(`Wait your turn ${stringAsName(currentActor.name)}!`);
+    return;
   }
   
   if(currentActor instanceof EnemyShip)
-    action = actions[Math.floor(Math.random()*actions.length)];
+  {
+    actionArr = Object.entries(actions); 
+    action = actionArr[Math.floor(Math.random()*actionArr.length)][1];
+  }  
   
   let actorName = stringAsName(currentActor.name);
-  let receiverName = stringAsName(currentReceiver.name);
+  let receiverName = "";
+  if(!typeof currentReceiver === "undefined")
+    receiverName = stringAsName(currentReceiver.name);
+    
   switch(action)
   {
     case "attack":
@@ -32,18 +45,28 @@ function step(currentActor, action, currentReceiver = undefined)
         default: printConsoleMessage("An unknown error has occurred! Please reload the browser window.");
       } 
       break;
-    case "defend": currentActor.doDefend(); break;
-    case "heal": break; 
-    case "charge": break;
+      
+    case "defend": 
+      currentActor.doDefend(); 
+      printConsoleMessage(`${actorName} activates their shields.`);
+      break;
+      
+    case "heal":
+      currentActor.doRepair(); 
+      printConsoleMessage(`${actorName} repairs some damage.`);
+      break;
+      
+    case "charge":
+      currentActor.doCharge(); 
+      printConsoleMessage(`${actorName} charges a powerful attack.`);
+      break;
+    
+    default:
+      printConsoleMessage(`Some happened with ${actorName}'s ship, They could not act!`);
   }
   
   updateHullVisuals(currentActor, 0);
-  updateHullVisuals(currentReceiver, 0);
-
-  if(checkBattleFinished())
-  {
-    
-  }else{
-    alternateTurn();
-  }
+  updateHullVisuals(currentReceiver, 1);
+  battleFinishedSequence();
+  return true;
 }
