@@ -1,10 +1,8 @@
 class Ship
 {
-  hull;
-  firepower;
-  accuracy;
-  constructor(hull, firepower, accuracy)
+  constructor(name, hull, firepower, accuracy)
   {
+    this.name = name;
     this.hull = this.forceUsableNumber(hull);
     this.firepower = this.forceUsableNumber(firepower);
     this.accuracy = this.forceUsableNumber(accuracy);
@@ -14,7 +12,7 @@ class Ship
   doAttack(receiver)
   {
     if(!(receiver instanceof Ship))
-      return;
+      return null;
     
     
     receiver.receiveDamage(this.firepower);
@@ -30,15 +28,33 @@ class PlayerShip extends Ship
 {
   constructor()
   {
-    super(20, 5, .70);
+    super("the hero", 20, 5, .70);
   }
 }
 
 class EnemyShip extends Ship
 {
+  static names = [
+    "Topzed Volron",
+    "Subcommander Dudflim",
+    "Lurzop Blibaicoain",
+    "Tadklet Kloplit",
+    "Metazoik Gtor",
+    "The High Narop of Narlejos",
+    "Flimaik Va'jar",
+    "Gloed Neeputh",
+    "Blubetti Ka'flam",
+    "Gorrot Klumlanzed",
+    "Ka'illit Squtor",
+    "The Klumala of Foxrax",
+    "Abtin Klopalgala",
+    "The Gobarg of Kucaris",
+  ];
+
   constructor()
   {
     super(
+      EnemyShip.names[Math.floor(Math.random()*EnemyShip.names.length)],
       Number((Math.random()*3+3).toFixed(2)),
       Number((Math.random()*2+2).toFixed(2)),
       Number((Math.random()*.2+.6).toFixed(2))
@@ -56,6 +72,7 @@ function testEnemyCreationValues()
   for(let i = 0; i < 1000; i++)
   {
     let e = new EnemyShip();
+    console.log(e);
     minVals[0] = e.hull < minVals[0] ? e.hull : minVals[0];
     minVals[1] = e.firepower < minVals[1] ? e.firepower : minVals[1];
     minVals[2] = e.accuracy < minVals[2] ? e.accuracy : minVals[2];

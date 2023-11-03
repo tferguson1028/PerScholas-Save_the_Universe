@@ -15,6 +15,7 @@
   <!-- # Initialization of functions and classes -->
   <script src="shipClass.js" defer></script>
   <script src="stepScript.js"></script>
+  <script src="generalGameFunctions.js"></script>
   <script src="initialize.js" defer></script>
   
   <!-- # Initialization of listeners -->
@@ -33,6 +34,7 @@
     <!-- <span class="debugVisual">STATS SECTION</span> -->
     <section class="shipStats">
       <span class="debugVisual">SHIP 1 STATS</span>
+      
     </section>
     <section class="shipStats">
       <span class="debugVisual">SHIP 2 STATS</span>
@@ -49,9 +51,9 @@
         <div class="shipTitle">
           <span class="debugVisual">SHIP NAME</span>
         </div>
-        <div class="shipImage">
-          <span class="debugVisual">SHIP IMAGE</span>
-        </div>
+        <img class="shipImage">
+          <!-- <span class="debugVisual">SHIP IMAGE</span> -->
+        </img>
         <div class="shipHealth">
           <span class="debugVisual">HEALTH BAR</span>
         </div>
@@ -62,25 +64,30 @@
         <div class="shipTitle">
           <span class="debugVisual">SHIP NAME</span>
         </div>
-        <div class="shipImage">
-          <span class="debugVisual">SHIP IMAGE</span>
-        </div>
+        <img class="shipImage">
+          <!-- <span class="debugVisual">SHIP IMAGE</span> -->
+        </img>
         <div class="shipHealth">
           <span class="debugVisual">HEALTH BAR</span>
         </div>
       </div>
     </section>
     
+    <!-- Text output saying what happened -->
+    <section id="console">
+      <header> Console </header>
+    </section>
+    
     <!-- Interactino Area -->
     <section id="userInteraction">
       <!-- <span class="debugVisual">INTERACTIVE SECTION</span> -->
-      <button id="inputAttack">ATTACK</button>
-      <button id="inputAttack">ATTACK</button>
-      <button id="inputAttack">ATTACK</button>
-      <button id="inputAttack">ATTACK</button>
-      <button id="inputAttack">ATTACK</button>
-      <button id="inputAttack">ATTACK</button>
+      <button id="inputAttk">attack</button>
+      <button id="inputDfnd">defend</button>
+      <button id="inputHeal">heal</button>
+      <button id="inputFlee">flee</button>
+      <button id="inputStep">Get Ship</button>
     </section>
+    
   </main>
   
   <!-- # Footer Page Info -->

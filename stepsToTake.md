@@ -22,4 +22,8 @@ Game is turn based. Must wait for player input to continue.
 ## 2.5 Creating HTML Elements
 - Since we need HTML to forward the game, we're making it now.
 
+## 2. Back to system
+- Now with the elements made, we have a button to forward the battle system, since loops won't work.
+- Attach listener to buttons that can forward battle.
+
 
