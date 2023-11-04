@@ -26,7 +26,13 @@ console.log(actionButtons["inputStep"]); // Cool this works
 actionButtons["inputStep"].addEventListener("click", function(event)
 {
   event.cancelable = false;
-  event.preventDefault();  
+  event.preventDefault();
+  
+  if(gameFinished)
+  {
+    gameOver();
+    return;
+  }
   
   if(typeof currentPlayer === 'undefined')
   {
@@ -69,7 +75,13 @@ actionButtons["inputStep"].addEventListener("click", function(event)
 actionButtons["inputFlee"].addEventListener("click", function(event)
 {
   event.cancelable = false;
-  event.preventDefault();  
+  event.preventDefault();
+  
+  if(gameFinished)
+  {
+    gameOver();
+    return;
+  }
   
   if(typeof currentPlayer === "undefined")
   {
@@ -83,24 +95,47 @@ actionButtons["inputFlee"].addEventListener("click", function(event)
     printConsoleMessage(`${stringAsName(currentPlayer.name)} cannot flee while under attack!`);
   }else
   {
-    printConsoleMessage(`${stringAsName(currentPlayer.name)} flees from the front-lines, living to see another day.`);
-    gameOverSequence();
+    retreatSequence();
   }
 });
 
 actionButtons["inputAttk"].addEventListener("click", () => {
+  if(gameFinished)
+  {
+    gameOver();
+    return;
+  }
+
   if(step(currentPlayer, actions.attk, currentAlien) === true)
     doAlienStep();
 });
 actionButtons["inputDfnd"].addEventListener("click", () => {
+  if(gameFinished)
+  {
+    gameOver();
+    return;
+  }
+
   step(currentPlayer, actions.dfnd);
   doAlienStep();
 });
 actionButtons["inputHeal"].addEventListener("click", () => {
+  if(gameFinished)
+  {
+    gameOver();
+    return;
+  }
+
   step(currentPlayer, actions.heal);
   doAlienStep();  
 });
 actionButtons["inputChrg"].addEventListener("click", () => {
+  if(gameFinished)
+  {
+    gameOver();
+    return;
+  }
+
   step(currentPlayer, actions.chrg);
   doAlienStep();  
 });

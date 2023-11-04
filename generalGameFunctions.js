@@ -28,7 +28,7 @@ function battleFinishedSequence()
 {
   if(typeof currentPlayer !== "undefined" && currentPlayer.hullPercentage() <= 0)
   {
-    shipDefeatedSequence(0);
+    shipDefeatedSequence(currentPlayer, 0);
     currentPlayer = undefined;
     gameOverSequence();
     return true;
@@ -36,7 +36,7 @@ function battleFinishedSequence()
   
   if(typeof currentAlien !== "undefined" && currentAlien.hullPercentage() <= 0)
   {
-    shipDefeatedSequence(1);
+    shipDefeatedSequence(currentAlien, 1);
     currentAlien = undefined;
     setInBattle(false);
     return true;
@@ -60,31 +60,32 @@ function alternateTurn()
 
 function gameCompleteSequence()
 {
-  //TODO
   printConsoleMessage("The battle is finished. All hostile vessels have been eliminated.");
+  gameFinished = true;
 }
 
 function retreatSequence()
 {
-  printConsoleMessage("You flee the battle.");
+  printConsoleMessage(`${stringAsName(currentPlayer.name)} flees from the battle. The alien fleet continues to grow.`);
+  gameFinished = true;
 }
 
 function gameOverSequence()
 {
-  //TODO  
   printConsoleMessage("Your ship was destroyed. You float for eternity in the endless abyss of space.");
+  gameFinished = true;
 }
 
-function shipDefeatedSequence(section)
+function gameOver()
 {
+  printConsoleMessage("The game has concluded. Please reload the page to play again.");
+}
+
+function shipDefeatedSequence(shipObject, section)
+{
+  printConsoleMessage(`${stringAsName(shipObject.name)} has been defeated!`);
   shipStats[section].style.visibility = "collapse";
   shipSections[section].style.visibility = "collapse";
-}
-
-function gameNextBattleSequence(defeatedActor)
-{
-  //TODO
-  
 }
 
 function setInBattle(bool)
