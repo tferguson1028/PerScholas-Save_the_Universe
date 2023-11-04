@@ -1,12 +1,17 @@
 //# SETUP
-let currentPlayer = undefined;
-let currentAlien = undefined;
+let currentPlayer;
+let currentAlien;
+let retreatedAlien;
+
 let currentTurnActor;
 let currentTurnReceiver;
 
-let gameFinished = false;
-const numAliens = Math.floor(Math.random()*(20-5)+5);
+let retreatsLeft = 3;
+
+const numAliens = Math.floor(Math.random()*(30-12)+12);
 let alienCount = 0;
+
+let gameFinished = false;
 
 const actions = {
   attk: "attack",
@@ -22,7 +27,7 @@ const actionButtons = document.querySelector("#userInteraction").children;
 console.log(actionButtons);
 console.log(actionButtons["inputStep"]); // Cool this works
 
-//# MAIN
+//# Event Listeners
 actionButtons["inputStep"].addEventListener("click", function(event)
 {
   event.cancelable = false;
@@ -55,10 +60,19 @@ actionButtons["inputStep"].addEventListener("click", function(event)
       return;
     }
     
-    currentAlien = new EnemyShip();
-    currentTurnReceiver = currentAlien;
+    if(typeof retreatedAlien === "undefined")
+    {
+      currentAlien = new EnemyShip(alienCount);
+      attachShip(currentAlien, 1, 1);
+    }else
+    {
+      currentAlien = retreatedAlien;
+      currentAlien.doRepairByPercent(1);
+      retreatedAlien = undefined;
+      shipSections[1].style.visibility = "visible";
+    }
     
-    attachShip(currentAlien, 1, 1);
+    currentTurnReceiver = currentAlien;
     attachShipStats(currentAlien, 1);
     printConsoleMessage(`The ${toOrdinal(++alienCount)} enemy vessel has appeared to block your path! What will you do?`);
     updateHullVisuals(currentAlien, 1);
@@ -88,14 +102,13 @@ actionButtons["inputFlee"].addEventListener("click", function(event)
     printConsoleMessage(`You have no ship to flee with.`);
     return;
   }
-    
   
   if(typeof currentAlien !== "undefined")
   {
     printConsoleMessage(`${stringAsName(currentPlayer.name)} cannot flee while under attack!`);
   }else
   {
-    retreatSequence();
+    abandonSequence();
   }
 });
 
@@ -109,6 +122,7 @@ actionButtons["inputAttk"].addEventListener("click", () => {
   if(step(currentPlayer, actions.attk, currentAlien) === true)
     doAlienStep();
 });
+
 actionButtons["inputDfnd"].addEventListener("click", () => {
   if(gameFinished)
   {
@@ -119,16 +133,36 @@ actionButtons["inputDfnd"].addEventListener("click", () => {
   step(currentPlayer, actions.dfnd);
   doAlienStep();
 });
+
 actionButtons["inputHeal"].addEventListener("click", () => {
   if(gameFinished)
   {
     gameOver();
     return;
   }
-
+  
+  if(typeof currentAlien !== "undefined")
+  {
+    if(retreatsLeft >= 1)
+    {
+      printConsoleMessage(`${stringAsName(currentPlayer.name)} retreats back to base to recuperate their shields!`);
+      // retreatSequence();
+      retreatsLeft--;
+      alienCount--;
+    }else
+    {
+      printConsoleMessage(`${stringAsName(currentPlayer.name)} does not have enough fuel to flee again!`);
+    }
+  }else
+  {
+    printConsoleMessage(`${stringAsName(currentPlayer.name)} is not under attack, they do not need to flee.`);
+  }
+  
   step(currentPlayer, actions.heal);
-  doAlienStep();  
+  alternateTurn();
+  // doAlienStep();
 });
+
 actionButtons["inputChrg"].addEventListener("click", () => {
   if(gameFinished)
   {

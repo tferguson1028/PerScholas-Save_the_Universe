@@ -71,58 +71,61 @@
   <!-- # Visuals -->
   <main id="gameArea">
     <!-- <span class="debugVisual">MAIN SECTION</span> -->
-    <section id="battleVisuals">
+    <section id="battleVisuals" class="guiSection">
       
       <!-- Player Ship -->
-      <div class="shipView">
+      <div class="shipView guiShipContainer">
         <div class="shipTitle">
-          <span class="debugVisual">SHIP NAME</span>
+          <!-- <span class="debugVisual">SHIP NAME</span> -->
         </div>
         <img class="shipImage">
           <!-- <span class="debugVisual">SHIP IMAGE</span> -->
         </img>
         <div class="shipHealth">
-          <span class="debugVisual">HEALTH BAR</span>
+          <!-- <span class="debugVisual">HEALTH BAR</span> -->
         </div>
       </div>
       
       <!-- Enemy Ship -->
-      <div class="shipView">
+      <div class="shipView guiShipContainer">
         <div class="shipTitle">
-          <span class="debugVisual">SHIP NAME</span>
+          <!-- <span class="debugVisual">SHIP NAME</span> -->
         </div>
         <img class="shipImage">
           <!-- <span class="debugVisual">SHIP IMAGE</span> -->
         </img>
         <div class="shipHealth">
-          <span class="debugVisual">HEALTH BAR</span>
+          <!-- <span class="debugVisual">HEALTH BAR</span> -->
         </div>
       </div>
     </section>
     
     <!-- Text output saying what happened -->
-    <section id="console">
+    <section id="console" class="guiSection">
       <header> History </header>
     </section>
     
     <!-- Interactino Area -->
-    <section id="userInteraction">
+    <section id="userInteraction" class="guiSection">
       <!-- <span class="debugVisual">INTERACTIVE SECTION</span> -->
-      <button class="battleMode" id="inputAttk">attack</button>
-      <button class="battleMode" id="inputDfnd">defend</button>
-      <button class="battleMode" id="inputHeal">repair</button>
-      <button class="battleMode" id="inputChrg">charge</button>
-      <button class="passiveMode" id="inputFlee">retreat</button>
-      <button class="passiveMode" id="inputStep">Get Ship</button>
+      <button class="battleMode guiButton" id="inputAttk">attack</button>
+      <button class="battleMode guiButton" id="inputDfnd">defend</button>
+      <button class="battleMode guiButton" id="inputHeal">retreat</button>
+      <button class="battleMode guiButton" id="inputChrg">charge</button>
+      <button class="passiveMode guiButton" id="inputFlee">flee</button>
+      <button class="passiveMode guiButton" id="inputStep">Get Ship</button>
     </section>
     
   </main>
   
   <!-- # Footer Page Info -->
-  <footer id="pageInformation">
-    <!-- <span class="debugVisual">FOOT</span> -->
-    <span class="devCredits">Info about the dev</span>
-    <span class="assetCredits">Info about the assets</span>
+  <footer id="pageInformation" class="guiFooter">
+    <span class="debugVisual">FOOT</span>
+    <span class="devCredits">Developed By Tesean Ferguson</span>
+    <span>|</span>
+    <span class="assetCredits">Ship Assets by <a href="https://foozlecc.itch.io/">Foozle</a></span>
+    <span>|</span>
+    <span class="assetCredits">UI Assets by <a href="https://rowdy41.itch.io">rowdy41</a></span>
   </footer>
 </body>
 </html>

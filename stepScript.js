@@ -1,5 +1,17 @@
+/**
+ * Checks is the argument is an instance of Ship class
+ * @param {Ship} actor 
+ * @returns boolean
+ */
 function validActor(actor) { return (actor instanceof Ship); }
 
+/**
+ * Automates a set of functions based on parameters.
+ * @param {Ship} currentActor 
+ * @param {String} action 
+ * @param {Ship | undefined} currentReceiver 
+ * @returns boolean
+ */
 function step(currentActor, action, currentReceiver = undefined)
 {
   if(typeof currentActor === "undefined")
@@ -25,13 +37,13 @@ function step(currentActor, action, currentReceiver = undefined)
   
   if(currentActor instanceof EnemyShip)
   {
-    actionArr = Object.entries(actions); 
+    let actionArr = Object.entries(actions); 
     action = actionArr[Math.floor(Math.random()*actionArr.length)][1];
   }  
   
   let actorName = stringAsName(currentActor.name);
   let receiverName = "";
-  if(!typeof currentReceiver === "undefined")
+  if(typeof currentReceiver !== "undefined")
     receiverName = stringAsName(currentReceiver.name);
   
   updateBattleHud();
@@ -41,25 +53,40 @@ function step(currentActor, action, currentReceiver = undefined)
       switch(currentActor.doAttack(currentReceiver))
       {
         case null: printConsoleMessage("Someone is a ghost ship! Please restart the browser window."); break;
-        case true: printConsoleMessage(`${actorName} hits ${receiverName} for ${currentActor.firepower} damage!`); break;
-        case false: printConsoleMessage(`${actorName} misses`); break;
+        case true: printConsoleMessage(`${actorName} hits ${receiverName}! They have ${Math.max(0, currentReceiver.forceUsableNumber(currentReceiver.hull))} hull integrity left!`); break;
+        case false: printConsoleMessage(`${actorName} misses ${receiverName}`); break;
         default: printConsoleMessage("An unknown error has occurred! Please reload the browser window.");
       } 
       break;
       
-    case "defend": 
-      currentActor.doDefend(); 
-      printConsoleMessage(`${actorName} activates their shields.`);
+    case "defend":
+      if(currentActor.defending)
+      {
+        printConsoleMessage(`${actorName} reinforces their hull using their shields!`);
+        currentActor.doRepairByPercent(Math.random()*(0.2-0.1)+.1);
+        currentActor.defending = false;
+      }else
+      {
+        currentActor.doDefend();
+        printConsoleMessage(`${actorName} activates their shields!`);
+      }
       break;
       
     case "heal":
-      currentActor.doRepair(); 
-      printConsoleMessage(`${actorName} repairs some damage.`);
+      currentActor.doRepair();
+      if(currentActor === currentPlayer) retreatSequence(); 
+      printConsoleMessage(`${actorName} repairs some damage!`);
       break;
       
     case "charge":
-      currentActor.doCharge(); 
-      printConsoleMessage(`${actorName} charges a powerful attack.`);
+      if(currentActor.charged)
+      {
+        printConsoleMessage(`${actorName} charges their charge!`);
+      }else
+      {
+        currentActor.doCharge(); 
+        printConsoleMessage(`${actorName} charges their next action!`);
+      }
       break;
     
     default:

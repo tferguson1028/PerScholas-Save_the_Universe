@@ -21,9 +21,16 @@ const ships = {
 //# Functionality Functions
 function doAlienStep()
 {
-  setTimeout(step, 1800, currentAlien, undefined, currentPlayer);
+  if(currentTurnActor === currentAlien)
+    setTimeout(step, 1800, currentAlien, undefined, currentPlayer);
 }
 
+/**
+ * Checks if the battle is finished based on player and enemy ship health hull, 
+ * if so, call the necessary functions for the next step of the game. 
+ * Returns boolean variable if battle is finished or not. 
+ * @returns boolean
+ */
 function battleFinishedSequence()
 {
   if(typeof currentPlayer !== "undefined" && currentPlayer.hullPercentage() <= 0)
@@ -46,6 +53,10 @@ function battleFinishedSequence()
   return false;
 }
 
+/**
+ * Swaps currentTurnActor and currentTurnReceiver, which are used for game state checks.
+ * Also prints console message to inform the player of the game state.
+ */
 function alternateTurn()
 {
   let temp = currentTurnActor;
@@ -58,36 +69,71 @@ function alternateTurn()
   printConsoleMessage(`It's ${stringAsName(currentTurnActor.name)}'s turn to attack!`);
 }
 
+/**
+ * Stores the current alien then heals the player by a certain amount
+ */
+function retreatSequence()
+{
+  //TODO
+  if(typeof currentAlien === "undefined")
+    printConsoleMessage(`${stringAsName(currentPlayer.name)} flees from the battle to recuperate their hull integrity. The alien fleet continues to grow.`);
+  
+  shipStats[1].style.visibility = "collapse";
+  shipSections[1].style.visibility = "collapse";
+  retreatedAlien = currentAlien;
+  currentAlien = undefined;
+  setInBattle(false);
+}
+
+/**
+ * Ends the game with victory message.
+ */
 function gameCompleteSequence()
 {
   printConsoleMessage("The battle is finished. All hostile vessels have been eliminated.");
   gameFinished = true;
 }
 
-function retreatSequence()
-{
-  printConsoleMessage(`${stringAsName(currentPlayer.name)} flees from the battle. The alien fleet continues to grow.`);
-  gameFinished = true;
-}
-
+/**
+ * Ends the game with a loss message.
+ */
 function gameOverSequence()
 {
   printConsoleMessage("Your ship was destroyed. You float for eternity in the endless abyss of space.");
   gameFinished = true;
 }
 
+function abandonSequence()
+{
+  printConsoleMessage("You abandon your mission, leaving the aliens to take over your home planet. Good job Hero...");
+  gameFinished = true;
+}
+
+/**
+ * Messages to user that game is over and to reload to play again.
+ */
 function gameOver()
 {
   printConsoleMessage("The game has concluded. Please reload the page to play again.");
 }
 
+/**
+ * 
+ * @param {Ship} shipObject 
+ * @param {int} section 
+ */
 function shipDefeatedSequence(shipObject, section)
 {
   printConsoleMessage(`${stringAsName(shipObject.name)} has been defeated!`);
   shipStats[section].style.visibility = "collapse";
   shipSections[section].style.visibility = "collapse";
+  setInBattle(false);
 }
 
+/**
+ * Sets CSS display params pertaining to the player's battle state
+ * @param {boolean} bool 
+ */
 function setInBattle(bool)
 {
   if(bool)
@@ -103,18 +149,31 @@ function setInBattle(bool)
 
 
 //# Visual Functions
+/**
+ * Sets HTML and CSS display params for displaying the ship sprite based on function parameters
+ * @param {Ship} shipObject 
+ * @param {int} section 
+ * @param {int} shipType 
+ * @param {int} shipVersion 
+ * @param {String} name 
+ */
 function attachShip(shipObject, section, shipType = -1, shipVersion = -1, name = shipObject.name)
 {
   let selectedShipSection = shipSections[section];
-  selectedShipSection.style.visibility = "visible";
   let nameDiv = selectedShipSection.querySelector(".shipTitle");
   let imageDiv = selectedShipSection.querySelector(".shipImage");
   let shipImage = getShip(shipType, shipVersion); 
   
   nameDiv.textContent = stringAsName(name);
   imageDiv.src = shipImage;
+  selectedShipSection.style.visibility = "visible";
 }
 
+/**
+ * Sets HTML and CSS display params for showing ship internal variables based on function parameters
+ * @param {Ship} shipObject 
+ * @param {int} section 
+ */
 function attachShipStats(shipObject, section)
 {
   let selectedStatBar = shipStats[section];
@@ -124,12 +183,20 @@ function attachShipStats(shipObject, section)
   selectedStatBar.querySelector(".stat-accuracy").querySelector("p").textContent = Number(shipObject.accuracy).toFixed(2);
 }
 
+/**
+ * Updates the visuals for 
+ * @param {Ship} shipObject 
+ * @param {int} section 
+ */
 function updateHullVisuals(shipObject, section)
 {
-  shipHealth = shipSections[section].querySelector(".shipHealth");
+  let shipHealth = shipSections[section].querySelector(".shipHealth");
   shipHealth.style.width = `${shipObject.hullPercentage()*100}%`;
 }
 
+/**
+ * Updates HTML ship display elements based on current game variable "currentPlayer" and "currentAlien" state 
+ */
 function updateBattleHud()
 {
   if(typeof currentPlayer !== "undefined") updateHullVisuals(currentPlayer, 0);
@@ -138,6 +205,10 @@ function updateBattleHud()
 
 
 //# Delegated Functions
+/**
+ * Prints message to console and to the HTML console for user view
+ * @param {String} message 
+ */
 function printConsoleMessage(message)
 {
   let newMessage = document.createElement("p");
@@ -151,6 +222,11 @@ function printConsoleMessage(message)
   consoleSection.querySelector("header").style.borderBottom = "1px solid white";
 }
 
+/**
+ * Returns a string in PascalCase
+ * @param {String} name 
+ * @returns String
+ */
 function stringAsName(name)
 {
   let retName = "";
@@ -160,7 +236,7 @@ function stringAsName(name)
   {      
     if(nameArr[i] === " " || nameArr[i] === "'")
       upperNextChar = true;
-    else if(upperNextChar == true)
+    else if(upperNextChar)
     {
       nameArr[i] = String(nameArr[i]).toUpperCase();
       upperNextChar = false;
@@ -170,6 +246,11 @@ function stringAsName(name)
   return retName;
 }
 
+/**
+ * Returns number with ordinal phrasing (st, nd, rd, th)
+ * @param {int} number 
+ * @returns String
+ */
 function toOrdinal(number)
 {
   switch(Math.floor(Number(number)))
@@ -181,12 +262,14 @@ function toOrdinal(number)
   }
 }
 
+/**
+ * Returns a ship from the shipsArray. If params are undefined, will get random.
+ * @param {int | String} type 
+ * @param {int} ver 
+ * @returns String
+ */
 function getShip(type = -1, ver = -1)
 {
-  let shipImage = "";
-  if(type === -1)
-    type = Math.floor(Math.random()*Object.keys(ships).length);
-  
   switch(type)
   {
     case 0:
@@ -199,6 +282,10 @@ function getShip(type = -1, ver = -1)
     case "nairan":
       type = "nairan"
         break;
+      
+    case -1:  
+    default:
+      type = Math.floor(Math.random()*Object.keys(ships).length);
   }
   
   if(ver === -1)
