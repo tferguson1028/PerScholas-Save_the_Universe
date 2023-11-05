@@ -20,6 +20,8 @@ const actions = {
   chrg: "charge"
 };
 
+const debugVisualNode = document.querySelector("#debugVisualizer"); 
+
 const shipSections = document.querySelectorAll(".shipView");
 const shipStats = document.querySelectorAll(".shipStats");
 const consoleSection = document.querySelector("#console");
@@ -172,4 +174,18 @@ actionButtons["inputChrg"].addEventListener("click", () => {
 
   step(currentPlayer, actions.chrg);
   doAlienStep();  
+});
+
+//This is debug visual helper. If button is pressed, toggle debug view.
+document.querySelector("html").addEventListener('keypress', (event) =>
+{
+  event.preventDefault();
+  event.stopPropagation();
+  
+  // Kinda got this idea from https://stackoverflow.com/a/54441305
+  // IT WORKED
+  if(event.key == '`' && debugVisualNode.rel === "stylesheet")
+    debugVisualNode.rel = "";
+  else
+    debugVisualNode.rel = "stylesheet";
 });

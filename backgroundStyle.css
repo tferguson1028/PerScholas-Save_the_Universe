@@ -1,7 +1,7 @@
 #background {
   display: block;
   position: absolute !important;
-  z-index: 0 !important;
+  z-index: -10 !important;
   
   overflow: hidden;
   
@@ -13,8 +13,6 @@
   
   top: 0;
   left: 0;
-  
-  z-index: -10;
 }
 
 #background > * {

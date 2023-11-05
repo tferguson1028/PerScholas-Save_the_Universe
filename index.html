@@ -22,7 +22,7 @@
   <!-- # Initialization of listeners -->
 
   <!-- # Debugging Files - Comment Out to disable -->
-  <!-- <link rel="stylesheet" href="structureVisualization.css"> -->
+  <link id="debugVisualizer" rel="" href="structureVisualization.css">
 </head>
 
 <body>
@@ -34,12 +34,12 @@
   </div>
 
   <!-- # Game Information -->
-  <header id="statsInformation" class="guiHeader">
-    <!-- <span class="debugVisual">STATS SECTION</span> -->
-    
+  <span class="debugVisual">STATS SECTION</span>
+  
+  <header id="statsInformation" class="guiHeader">    
     <!-- Ship 1 -->
+    <span class="debugVisual">SHIP 1 STATS</span>
     <section class="shipStats">
-      <!-- <span class="debugVisual">SHIP 1 STATS</span> -->
       <span class="stat stat-hull">
         <h3>Hull</h3>
         <p>0.00</p>
@@ -55,8 +55,8 @@
     </section>
     
     <!-- Ship 2 -->
+    <span class="debugVisual">SHIP 2 STATS</span>
     <section class="shipStats">
-      <!-- <span class="debugVisual">SHIP 2 STATS</span> -->
       <span class="stat stat-hull">
         <h3>Hull</h3>
         <p>0.00</p>
@@ -73,34 +73,27 @@
   </header>
   
   <!-- # Visuals -->
+  <span class="debugVisual">MAIN SECTION</span>
   <main id="gameArea">
-    <!-- <span class="debugVisual">MAIN SECTION</span> -->
     <section id="battleVisuals" class="guiSection">
-      
       <!-- Player Ship -->
       <div class="shipView guiShipContainer">
-        <div class="shipTitle">
-          <!-- <span class="debugVisual">SHIP NAME</span> -->
-        </div>
-        <img class="shipImage">
-          <!-- <span class="debugVisual">SHIP IMAGE</span> -->
-        </img>
-        <div class="shipHealth">
-          <!-- <span class="debugVisual">HEALTH BAR</span> -->
-        </div>
+        <span class="debugVisual">SHIP NAME</span>
+        <div class="shipTitle"></div>
+        <span class="debugVisual">SHIP IMAGE</span>
+        <img class="shipImage" alt=""/>
+        <span class="debugVisual">HEALTH BAR</span>
+        <div class="shipHealth"></div>
       </div>
       
       <!-- Enemy Ship -->
       <div class="shipView guiShipContainer">
-        <div class="shipTitle">
-          <!-- <span class="debugVisual">SHIP NAME</span> -->
-        </div>
-        <img class="shipImage">
-          <!-- <span class="debugVisual">SHIP IMAGE</span> -->
-        </img>
-        <div class="shipHealth">
-          <!-- <span class="debugVisual">HEALTH BAR</span> -->
-        </div>
+        <span class="debugVisual">SHIP NAME</span>
+        <div class="shipTitle"></div>
+        <span class="debugVisual">SHIP IMAGE</span>
+        <img class="shipImage" alt=""/>
+        <span class="debugVisual">HEALTH BAR</span>
+        <div class="shipHealth"></div>
       </div>
     </section>
     
@@ -109,31 +102,31 @@
       <header> History </header>
     </section>
     
-    <!-- Interactino Area -->
+    <!-- Interaction Area -->
+    <span class="debugVisual">INTERACTIVE SECTION</span>
     <section id="userInteraction" class="guiSection">
-      <!-- <span class="debugVisual">INTERACTIVE SECTION</span> -->
       <button class="battleMode guiButton" id="inputAttk">
-        <img src="assets/icons/reticule.png" class="guiIcon"/>
+        <img src="assets/icons/reticule.png" class="guiIcon" alt=""/>
         attack
       </button>
       <button class="battleMode guiButton" id="inputDfnd">
-        <img src="assets/icons/shieldcomb.png" class="guiIcon"/>
+        <img src="assets/icons/shieldcomb.png" class="guiIcon" alt=""/>
         defend
       </button>
       <button class="battleMode guiButton" id="inputChrg">
-        <img src="assets/icons/upgrade.png" class="guiIcon"/>
+        <img src="assets/icons/upgrade.png" class="guiIcon" alt=""/>
         charge
       </button>
       <button class="battleMode guiButton" id="inputHeal">
-        <img src="assets/icons/afterburn.png" class="guiIcon"/>
+        <img src="assets/icons/afterburn.png" class="guiIcon" alt=""/>
         retreat
       </button>
       <button class="passiveMode guiButton" id="inputFlee">
-        <img src="assets/icons/world.png" class="guiIcon"/>
+        <img src="assets/icons/world.png" class="guiIcon" alt=""/>
         flee
       </button>
       <button class="passiveMode guiButton" id="inputStep">
-        <img src="assets/icons/spiky-field.png" class="guiIcon"/>
+        <img src="assets/icons/spiky-field.png" class="guiIcon" alt=""/>
         Get Ship
       </button>
     </section>
@@ -141,8 +134,8 @@
   </main>
   
   <!-- # Footer Page Info -->
+  <span class="debugVisual">FOOT</span>
   <footer id="pageInformation" class="guiFooter">
-    <!-- <span class="debugVisual">FOOT</span> -->
     <span class="devCredits">Developed By Tesean Ferguson</span>
     <div>|</div>
     <span class="assetCredits">Ship Assets by <a href="https://foozlecc.itch.io/">Foozle</a></span>

@@ -33,14 +33,6 @@
 
 #statsInformation > .shipStats > span > * {
   text-align: left;
-  
-  /* flex-basis: 30%; */
   margin: 0;
   padding: 8px;
-  
-  /* border: 1px solid white; */
-}
-
-#statsInformation > .shipStats > span > p {
-  /* flex-basis: 70%; */
 }
