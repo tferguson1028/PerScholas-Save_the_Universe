@@ -33,7 +33,11 @@ class Ship
     return retBool;
   }
   
-  doRepairByPercent(repair) { this.hull = this.forceUsableNumber(Math.min(this.hullMax, this.hull + this.hullMax*repair)); }
+  doRepairByPercent(repair) 
+  {
+    this.hull = this.forceUsableNumber(Math.min(this.hullMax, this.hull + this.hullMax*repair)); 
+    return this.forceUsableNumber(this.hullMax*repair);
+  }
   doRepair()
   {
     // Repair can do minimum of 20% and 100% of based on current hull health. Makes comebacks via retreat less likely.
@@ -46,6 +50,7 @@ class Ship
     this.charged = false;
     this.charge = 0;
     this.hull = Math.min(this.hullMax, this.hull + repair);
+    return repair;
   }  
   
   doDefend() { this.defending = true; }

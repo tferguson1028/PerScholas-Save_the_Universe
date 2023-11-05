@@ -46,7 +46,7 @@ function step(currentActor, action, currentReceiver = undefined)
   if(typeof currentReceiver !== "undefined")
     receiverName = stringAsName(currentReceiver.name);
   
-  updateBattleHud();
+  updateHud();
   switch(action)
   {
     case "attack":
@@ -62,9 +62,9 @@ function step(currentActor, action, currentReceiver = undefined)
     case "defend":
       if(currentActor.defending)
       {
-        printConsoleMessage(`${actorName} reinforces their hull using their shields!`);
-        currentActor.doRepairByPercent(Math.random()*(0.2-0.1)+.1);
+        let repairVal = currentActor.doRepairByPercent(Math.random()*(0.2-0.1)+.1);
         currentActor.defending = false;
+        printConsoleMessage(`${actorName} reinforces their hull by ${repairVal} using their shields!`);
       }else
       {
         currentActor.doDefend();
@@ -73,9 +73,9 @@ function step(currentActor, action, currentReceiver = undefined)
       break;
       
     case "heal":
-      currentActor.doRepair();
+      let repairVal = currentActor.doRepair();
       if(currentActor === currentPlayer) retreatSequence(); 
-      printConsoleMessage(`${actorName} repairs some damage!`);
+      printConsoleMessage(`${actorName} repairs ${repairVal} of their hull integrity!`);
       break;
       
     case "charge":
@@ -93,7 +93,14 @@ function step(currentActor, action, currentReceiver = undefined)
       printConsoleMessage(`Some happened with ${actorName}'s ship, They could not act!`);
   }
 
-  updateBattleHud();
+  updateHud();
   battleFinishedSequence();
   return true;
+}
+
+function updateHud()
+{
+  updateBattleHud();
+  attachShipStats(currentPlayer, 0);
+  attachShipStats(currentAlien, 1);
 }
