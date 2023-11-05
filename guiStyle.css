@@ -1,9 +1,9 @@
+/* # General Stuff */
 @font-face {
   font-family: "Pixantiqua";
   src: url("assets/fonts/pixantiqua_font/Pixantiqua-24l8.ttf");
 }
 
-/* # Button Stuff */
 /* After an hour of trying to find the things I was looking for, I accidentally found it */
 html * {
   font-family: "Pixantiqua", Arial, Helvetica, sans-serif !important;
@@ -16,6 +16,19 @@ h1, h2, h3, h4, h5, h6{
   font-size: 14pt;
 }
 
+.guiSection {
+  margin: 4px 10px 0px 10px !important;
+  
+  border: 0px solid #ffffff !important;
+  border-width: 4px 4px !important;
+  border-image-source: url("assets/gui/section/section_borderBG_white_light.png") !important;
+  border-image-repeat: stretch !important;
+  border-image-slice: 2 2 2 2 fill !important;
+  
+  box-shadow: 0px 2px 4px goldenrod; 
+}
+
+/* # Button Stuff */
 .guiIcon {
   object-fit: contain !important;   
   image-rendering: auto !important;
@@ -29,10 +42,19 @@ h1, h2, h3, h4, h5, h6{
 .guiButton {
   background-color: #00000000 !important;
   border: 24px solid #ffffff !important;
-  border-image-source: url("assets/gui/button/button2_normal.png") !important;
-  border-image-repeat: stretch !important;
-  border-image-slice: 14 14 fill !important;
+  border-image-source: url("assets/gui/button/menu_button.png") !important;
+  border-image-repeat: stretch repeat !important;
+  border-image-slice: 12 fill !important;
   min-width: fit-content !important;
+  filter: grayscale(20%);
+}
+
+.guiButton:hover {
+  border-image-source: url("assets/gui/button/menu_button_hover.png") !important;
+}
+
+.guiButton:active {
+  border-image-source: url("assets/gui/button/menu_button_pressed.png") !important;
 }
 
 .guiButton > * {
@@ -50,32 +72,31 @@ h1, h2, h3, h4, h5, h6{
 .guiButton > span {
   font-size: 18pt !important;
   font-weight: bold !important;
-  color: #513e29 !important;
-  text-shadow: 1px 1px 0px #ccc2b7;
-}
+  letter-spacing: 2.5px !important;
 
-.guiButton:hover {
-  border-image-source: url("assets/gui/button/button_hover.png") !important;
-}
-
-.guiButton:active {
-  border-image-source: url("assets/gui/button/button_active.png") !important;
-}
-
-
-/* # Big Sections stuff */ 
-.guiSection {
-  margin: 4px 10px 0px 10px !important;
+  color: #83571f !important;
+  opacity: 40%;
   
-  border: 0px solid #ffffff !important;
-  border-width: 4px 4px !important;
-  border-image-source: url("assets/gui/section/section_borderBG_white_light.png") !important;
-  border-image-repeat: stretch !important;
-  border-image-slice: 2 2 2 2 fill !important;
-  
-  box-shadow: 0px 2px 4px goldenrod; 
+  text-shadow: 0px -2px 0px #000000;
 }
 
+.guiButton > img {
+  color: #83571f;
+  filter: drop-shadow(0px -2px black) opacity(50%);
+}
+
+.guiButton:hover > span {
+  color: #fff7c2 !important;
+  text-shadow: 0px -2px 0px #83571f;
+  opacity: 60%;
+}
+
+.guiButton:active > span {
+
+}
+
+
+/* # Battle Section stuff */ 
 .guiSection#battleVisuals {
   margin: -12px 0px 0px 0px !important;
   padding: 32px 0px 22px 0px !important;
@@ -85,23 +106,59 @@ h1, h2, h3, h4, h5, h6{
   box-shadow: 0 0 0 goldenrod;
 }
 
+.guiSection#battleVisuals .shipTitle{
+  border-image-source: url("assets/gui/section/section_header.png") !important;
+  border: 8px solid white;
+  border-width: 4px 8px !important;
+  padding: 2px;
+  border-image-slice: 8 8 fill !important;
+} 
+
+
+/* # Console Stuff */
 .guiSection#console {
   padding: 0 !important;
   background-color: black !important;
 }
 
-.guiSection#console *{
+.guiSection#console header {
+  border: 1px !important;
+  border-image-source: url("assets/gui/text_plate.png") !important;
+  border-image-slice: 8 fill !important;
+  opacity: 80% !important;
+}
+
+.guiSection#console > header > span {
+  font-size: 14pt;
+  text-decoration: underline;
+}
+
+.guiSection#console > p{
   margin: 0 !important;
-  padding: 0 12px !important;
-  
+  padding: 0 18px !important;  
   font-size: 12pt !important;
-  
+  /* background-origin: border-box; */
 }
 
 
 /* # Header Stuff */
 .guiHeader {
-  
+  /* margin: 32px; */
+  background: none !important;
+  border: 1px solid #000000 !important;
+  border-width: 4px 0px 4px 0px !important;
+  border-image-source: url("assets/gui/section/section_borderBG_white_light.png") !important;
+  border-image-slice: 8 8 6 8 fill !important;
+  border-image-repeat: round !important;
+}
+
+.guiHeader > * {
+  background: none !important;
+  border: 1px solid #000000 !important;
+  border-width: 16px !important;
+  border-image-source: url("assets/gui/section/section_borderBG_white_light.png") !important;
+  border-image-slice: 8 8 6 8 fill !important;
+  border-image-repeat: stretch !important;
 }
 
 
@@ -111,6 +168,8 @@ h1, h2, h3, h4, h5, h6{
   border: 1px solid goldenrod !important;
   border-width: 1px 0 0 0 !important;
   background-color: #1f002a !important;
+  
+  font-size: 10pt;
 }
 
 .guiFooter > span {
@@ -118,8 +177,7 @@ h1, h2, h3, h4, h5, h6{
   border-width: 0px 0 4px 0 !important;
   border-image-source: url("assets/gui/section/section_borderBG_gold_heavy.png") !important;
   border-image-repeat: stretch !important;
-  border-image-slice: 7 7 6 3 !important;
+  border-image-slice: 7 7 6 7 !important;
   
   width: fit-content !important;
-  vertical-align: baseline !important;
 }

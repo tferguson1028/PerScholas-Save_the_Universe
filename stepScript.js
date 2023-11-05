@@ -53,7 +53,7 @@ function step(currentActor, action, currentReceiver = undefined)
       switch(currentActor.doAttack(currentReceiver))
       {
         case null: printConsoleMessage("Someone is a ghost ship! Please restart the browser window."); break;
-        case true: printConsoleMessage(`${actorName} hits ${receiverName}! They have ${Math.max(0, currentReceiver.forceUsableNumber(currentReceiver.hull))} hull integrity left!`); break;
+        case true: printConsoleMessage(`${actorName} hits ${receiverName}! They have ${currentReceiver.forceUsableNumber(Math.max(0, currentReceiver.hull))} hull integrity left!`); break;
         case false: printConsoleMessage(`${actorName} misses ${receiverName}`); break;
         default: printConsoleMessage("An unknown error has occurred! Please reload the browser window.");
       } 

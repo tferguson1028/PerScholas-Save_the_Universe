@@ -15,8 +15,8 @@
   
   border: 1px solid #ffffff;
   background-color: #000000;
-  margin: 1px;
-  padding: 2px;
+  margin: 8px;
+  padding: 2px 5%;
 }
 
 #statsInformation > .shipStats > span {

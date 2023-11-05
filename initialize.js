@@ -54,7 +54,7 @@ actionButtons["inputStep"].addEventListener("click", function(event)
     updateHullVisuals(currentPlayer, 0);
     
     //Apparently currentTarget has better functionality
-    event.currentTarget.innerHTML = "<img src=\"assets/icons/alien-fire.png\" class=\"guiIcon\"/><span>embark</span>";
+    event.currentTarget.innerHTML = "<img src=\"assets/icons/alien-fire_pixelated.png\" class=\"guiIcon\"/><span>embark</span>";
   }else if(typeof currentAlien === 'undefined')
   {
     if(alienCount >= numAliens)
@@ -80,7 +80,7 @@ actionButtons["inputStep"].addEventListener("click", function(event)
     printConsoleMessage(`The ${toOrdinal(++alienCount)} enemy vessel has appeared to block your path! What will you do?`);
     updateHullVisuals(currentAlien, 1);
     setInBattle(true);
-    event.currentTarget.innerHTML = "<img src=\"assets/icons/alien-fire.png\" class=\"guiIcon\"/><span>onwards</span>"
+    event.currentTarget.innerHTML = "<img src=\"assets/icons/alien-fire_pixelated.png\" class=\"guiIcon\"/><span>onwards</span>"
   }else
   {
     console.log(typeof currentAlien);
@@ -178,15 +178,15 @@ actionButtons["inputChrg"].addEventListener("click", () => {
 });
 
 //This is debug visual helper. If button is pressed, toggle debug view.
-document.querySelector("html").addEventListener('keypress', (event) =>
+document.querySelector("html").addEventListener('keydown', (event) =>
 {
   event.preventDefault();
   event.stopPropagation();
   
   // Kinda got this idea from https://stackoverflow.com/a/54441305
   // IT WORKED
-  if(event.key == '`' && debugVisualNode.rel === "stylesheet")
+  if(event.key === '`' && debugVisualNode.rel === "stylesheet")
     debugVisualNode.rel = "";
-  else
+  else if(event.key === '`')
     debugVisualNode.rel = "stylesheet";
 });
