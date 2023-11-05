@@ -1,13 +1,21 @@
+@font-face {
+  font-family: "Pixantiqua";
+  src: url("assets/fonts/pixantiqua_font/Pixantiqua-24l8.ttf");
+}
+
+/* # Button Stuff */
 /* After an hour of trying to find the things I was looking for, I accidentally found it */
+html * {
+  font-family: "Pixantiqua" !important;
+}
+
 .guiIcon {
-  object-fit: contain !important;
-  /* width: 100%; */
-  
+  object-fit: contain !important;   
   image-rendering: auto !important;
   
   min-height: 24pt !important;
   max-height: 48px !important;
-  margin: 0 12px !important;
+  margin: 6px 0px !important;
   padding: 0 !important;
 }
 
@@ -17,7 +25,22 @@
   border-image-source: url("assets/gui/button/button2_normal.png") !important;
   border-image-repeat: stretch !important;
   border-image-slice: 14 14 fill !important;
+  min-width: fit-content !important;
+}
+
+.guiButton > * {
+  white-space: nowrap;
   
+  /* This is a work around to force a wrap on button icons since I'm using
+     display param to change buttons when in battle mode.
+  */
+  width: 100% !important;
+
+  /* To stop dragging disabling click event: https://stackoverflow.com/a/14432955 */
+  pointer-events: none;
+}
+
+.guiButton > span {
   font-size: 18pt !important;
   font-weight: bold !important;
   color: #513e29 !important;
@@ -32,6 +55,8 @@
   border-image-source: url("assets/gui/button/button_active.png") !important;
 }
 
+
+/* # Big Sections stuff */ 
 .guiSection {
   margin: 4px 10px 0px 10px !important;
   
@@ -64,11 +89,18 @@
   
 }
 
+
+/* # Header Stuff */
+.guiHeader {
+  
+}
+
+
+/* # Footer Stuff */
 .guiFooter {
-  /* border-width: 12px !important; */
+  margin-top: 24px;
   border: 1px solid goldenrod !important;
-  border-width: 1px 1px 0 1px !important;
-  padding: 0 !important;
+  border-width: 1px 0 0 0 !important;
   background-color: #1f002a !important;
 }
 
@@ -80,8 +112,5 @@
   border-image-slice: 7 7 6 3 !important;
   
   width: fit-content !important;
-}
-
-.guiFooter > div {
-  visibility: hidden !important;
+  vertical-align: baseline !important;
 }

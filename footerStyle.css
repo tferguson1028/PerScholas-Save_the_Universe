@@ -3,9 +3,14 @@
   display: flex;
   flex-wrap: nowrap;
   
+  overflow-y: hidden;
+  overflow-x: auto;
+  
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  
+  padding: 2px 24px !important;
   gap: 18px;
 }
 
@@ -13,4 +18,18 @@
   white-space: nowrap;
   width: fit-content;
   height: fit-content;
+}
+
+#pageInformation > *:nth-child(2){
+  flex: 1;
+  visibility: collapse;
+}
+
+
+#pageInformation a {
+  color: #f5c147;
+}
+
+#pageInformation a:visited {
+  color: #d7a01d;
 }
