@@ -180,8 +180,8 @@ actionButtons["inputChrg"].addEventListener("click", () => {
 //This is debug visual helper. If button is pressed, toggle debug view.
 document.querySelector("html").addEventListener('keydown', (event) =>
 {
-  event.preventDefault();
-  event.stopPropagation();
+  // event.preventDefault(); // This broke browser hotkeys
+  // event.stopPropagation();
   
   // Kinda got this idea from https://stackoverflow.com/a/54441305
   // IT WORKED
