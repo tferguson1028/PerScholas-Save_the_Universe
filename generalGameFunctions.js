@@ -78,8 +78,8 @@ function retreatSequence()
   if(typeof currentAlien === "undefined")
     printConsoleMessage(`${stringAsName(currentPlayer.name)} flees from the battle to recuperate their hull integrity. The alien fleet continues to grow.`);
   
-  shipStats[1].style.visibility = "collapse";
-  shipSections[1].style.visibility = "collapse";
+  shipStats[1].style.display = "none";
+  shipSections[1].style.display = "none";
   retreatedAlien = currentAlien;
   currentAlien = undefined;
   setInBattle(false);
@@ -105,6 +105,7 @@ function gameOverSequence()
 
 function abandonSequence()
 {
+  shipDefeatedSequence(currentPlayer, 0);
   printConsoleMessage("You abandon your mission, leaving the aliens to take over your home planet. Good job Hero...");
   gameFinished = true;
 }
@@ -125,8 +126,21 @@ function gameOver()
 function shipDefeatedSequence(shipObject, section)
 {
   printConsoleMessage(`${stringAsName(shipObject.name)} has been defeated!`);
-  shipStats[section].style.visibility = "collapse";
-  shipSections[section].style.visibility = "collapse";
+  // shipStats[section].style.transform = "scale(0, 1)";
+  // shipSections[section].style.transform = "scale(0)";
+  shipSections[section].querySelector(".shipHealth").style.transition =  "none"; // We are doing this so that it disappears with the view in a good looking way
+  
+  setTimeout(() => {
+    shipStats[section].style.transform = "scale(0, 1)";
+    shipSections[section].style.transform = "scale(0)";
+  }, 500);
+  
+  setTimeout(() => {
+    shipStats[section].style.display = "none";
+    shipSections[section].style.display = "none";
+    shipStats[section].style.transform = "scale(1)";
+    shipSections[section].style.transform = "scale(1)";
+  }, 1000);
   setInBattle(false);
 }
 
@@ -166,8 +180,10 @@ function attachShip(shipObject, section, shipType = -1, shipVersion = -1, name =
   
   nameDiv.textContent = stringAsName(name);
   imageDiv.src = shipImage;
-  selectedShipSection.style.visibility = "visible";
+  selectedShipSection.style.display = "flex";
+  selectedShipSection.style.transform = "scale(1)";
   selectedShipSection.style.backgroundSize = `${Math.floor(Math.random()*(200-120)+120)}%`;
+  selectedShipSection.querySelector(".shipHealth").style.transition =  "0.2s ease-out";
 }
 
 /**
@@ -178,7 +194,8 @@ function attachShip(shipObject, section, shipType = -1, shipVersion = -1, name =
 function attachShipStats(shipObject, section)
 {
   let selectedStatBar = shipStats[section];
-  selectedStatBar.style.visibility = "visible";
+  selectedStatBar.style.display = "flex";
+  selectedStatBar.style.transform = "scale(1)";
   selectedStatBar.querySelector(".stat-hull").querySelector("p").textContent = Number(shipObject.hull).toFixed(2);
   selectedStatBar.querySelector(".stat-firepower").querySelector("p").textContent = Number(shipObject.firepower).toFixed(2);
   selectedStatBar.querySelector(".stat-accuracy").querySelector("p").textContent = Number(shipObject.accuracy).toFixed(2);

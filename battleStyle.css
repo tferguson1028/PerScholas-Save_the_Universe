@@ -31,6 +31,9 @@
 
   background-image: url("assets/backgrounds/space/space.png");
   background-size: 140%;
+  
+  transition: 0.2s;
+  transform-origin: center;
 }
 
 #battleVisuals > .shipView > * {
@@ -45,6 +48,7 @@
   max-height: 192px; 
   min-height: 128px;
   min-width: 256px;
+  transform-origin: center;
 }
 
 #battleVisuals > .shipView > .shipHealth {
@@ -56,6 +60,8 @@
   
   align-self: flex-start;
   margin: 0;
+  
+  transition: 0.2s ease-in-out;
 }
 
 /* * Console Section * */

@@ -66,11 +66,11 @@ body > footer {
 }
 
 .shipStats {
-  visibility: collapse;
+  display: none;
 }
 
 .shipView {
-  visibility: collapse;
+  display: none;
 }
 
 .passiveMode {

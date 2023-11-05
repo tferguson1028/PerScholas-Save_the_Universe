@@ -26,8 +26,21 @@ const shipSections = document.querySelectorAll(".shipView");
 const shipStats = document.querySelectorAll(".shipStats");
 const consoleSection = document.querySelector("#console");
 const actionButtons = document.querySelector("#userInteraction").children;
-console.log(actionButtons);
-console.log(actionButtons["inputStep"]); // Cool this works
+// console.log(actionButtons);
+// console.log(actionButtons["inputStep"]); // Cool this works
+
+// Making necessary hud elements invisible due to how the CSS was made
+for(let section of shipSections)
+{
+  section.style.display = "none";
+  section.style.transform = "scale(0)";
+}
+for(let section of shipStats)
+{
+  section.style.display = "none";
+  section.style.transform = "scale(0)";
+}
+
 
 //# Event Listeners
 actionButtons["inputStep"].addEventListener("click", function(event)
@@ -72,7 +85,7 @@ actionButtons["inputStep"].addEventListener("click", function(event)
       currentAlien = retreatedAlien;
       currentAlien.doRepairByPercent(1);
       retreatedAlien = undefined;
-      shipSections[1].style.visibility = "visible";
+      shipSections[1].style.display = "flex";
     }
     
     currentTurnReceiver = currentAlien;
