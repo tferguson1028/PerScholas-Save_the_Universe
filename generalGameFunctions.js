@@ -126,9 +126,8 @@ function gameOver()
 function shipDefeatedSequence(shipObject, section)
 {
   printConsoleMessage(`${stringAsName(shipObject.name)} has been defeated!`);
-  // shipStats[section].style.transform = "scale(0, 1)";
-  // shipSections[section].style.transform = "scale(0)";
   shipSections[section].querySelector(".shipHealth").style.transition =  "none"; // We are doing this so that it disappears with the view in a good looking way
+  shipSections[section].querySelector(".shipImage").src = "assets/sprites/x_plosion/x_plosion.gif";
   
   setTimeout(() => {
     shipStats[section].style.transform = "scale(0, 1)";

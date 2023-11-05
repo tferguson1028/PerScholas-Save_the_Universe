@@ -21,8 +21,10 @@ setInterval(() =>
   frame = (frame+1)%frameCount;}, fps
 );
 
+//Sometimes the click event isn't enough.
+setInterval(updateBackground, 2000);
 document.addEventListener("click", updateBackground);
-updateBackground(); //Doing it on first load too.
+updateBackground(); //Update background on first load too make sure it's properly sized.
 
 function updateBackground()
 {

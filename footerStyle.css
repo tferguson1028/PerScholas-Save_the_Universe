@@ -20,16 +20,15 @@
   height: fit-content;
 }
 
-#pageInformation > *:nth-child(2){
+#pageInformation > *:nth-child(3){
   flex: 1;
   visibility: collapse;
 }
-
 
 #pageInformation a {
   color: #f5c147;
 }
 
 #pageInformation a:visited {
-  color: #d7a01d;
+  color: #ad7e10;
 }
