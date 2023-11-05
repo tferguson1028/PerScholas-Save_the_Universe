@@ -1,3 +1,87 @@
-.guiButton{
+/* After an hour of trying to find the things I was looking for, I accidentally found it */
+.guiIcon {
+  object-fit: contain !important;
+  /* width: 100%; */
+  
+  image-rendering: auto !important;
+  
+  min-height: 24pt !important;
+  max-height: 48px !important;
+  margin: 0 12px !important;
+  padding: 0 !important;
+}
 
+.guiButton {
+  background-color: #00000000 !important;
+  border: 24px solid #ffffff !important;
+  border-image-source: url("assets/gui/button/button2_normal.png") !important;
+  border-image-repeat: stretch !important;
+  border-image-slice: 14 14 fill !important;
+  
+  font-size: 18pt !important;
+  font-weight: bold !important;
+  color: #513e29 !important;
+  text-shadow: 1px 1px 0px #ccc2b7;
+}
+
+.guiButton:hover {
+  border-image-source: url("assets/gui/button/button_hover.png") !important;
+}
+
+.guiButton:active {
+  border-image-source: url("assets/gui/button/button_active.png") !important;
+}
+
+.guiSection {
+  margin: 4px 10px 0px 10px !important;
+  
+  border: 0px solid #ffffff !important;
+  border-width: 4px 4px !important;
+  border-image-source: url("assets/gui/section/section_borderBG_white_light.png") !important;
+  border-image-repeat: stretch !important;
+  border-image-slice: 2 2 2 2 fill !important;
+  
+  box-shadow: 0px 2px 4px goldenrod; 
+}
+
+.guiSection#battleVisuals {
+  margin: -12px 0px 0px 0px !important;
+  padding: 32px 0px 22px 0px !important;
+  border-image-source: url("assets/gui/section/section_battleArea.png") !important;
+  border-width: 0px 32px !important;
+  border-image-slice: 0 18 fill !important;
+  box-shadow: 0 0 0 goldenrod;
+}
+
+.guiSection#console {
+  padding: 0 !important;
+  background-color: black !important;
+}
+
+.guiSection#console *{
+  margin: 0 !important;
+  padding: 0 !important;
+  
+}
+
+.guiFooter {
+  /* border-width: 12px !important; */
+  border: 1px solid goldenrod !important;
+  border-width: 1px 1px 0 1px !important;
+  padding: 0 !important;
+  background-color: #1f002a !important;
+}
+
+.guiFooter > span {
+  border: 0px solid #ffffff !important;
+  border-width: 0px 0 4px 0 !important;
+  border-image-source: url("assets/gui/section/section_borderBG_gold_heavy.png") !important;
+  border-image-repeat: stretch !important;
+  border-image-slice: 7 7 6 3 !important;
+  
+  width: fit-content !important;
+}
+
+.guiFooter > div {
+  visibility: hidden !important;
 }

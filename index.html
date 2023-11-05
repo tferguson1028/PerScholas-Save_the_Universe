@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="battleStyle.css">
   <link rel="stylesheet" href="footerStyle.css">
   <link rel="stylesheet" href="backgroundStyle.css">
+  <link rel="stylesheet" href="guiStyle.css">
   
   <!-- # Initialization of functions and classes -->
   <script src="shipClass.js" defer></script>
@@ -27,10 +28,13 @@
 <body>
   <!-- # Background -->
   <div id="background">
+    <div id="layer1"></div>
+    <div id="layer2"></div>
+    <div id="layer3"></div>
   </div>
 
   <!-- # Game Information -->
-  <header id="statsInformation">
+  <header id="statsInformation" class="guiHeader">
     <!-- <span class="debugVisual">STATS SECTION</span> -->
     
     <!-- Ship 1 -->
@@ -108,23 +112,41 @@
     <!-- Interactino Area -->
     <section id="userInteraction" class="guiSection">
       <!-- <span class="debugVisual">INTERACTIVE SECTION</span> -->
-      <button class="battleMode guiButton" id="inputAttk">attack</button>
-      <button class="battleMode guiButton" id="inputDfnd">defend</button>
-      <button class="battleMode guiButton" id="inputHeal">retreat</button>
-      <button class="battleMode guiButton" id="inputChrg">charge</button>
-      <button class="passiveMode guiButton" id="inputFlee">flee</button>
-      <button class="passiveMode guiButton" id="inputStep">Get Ship</button>
+      <button class="battleMode guiButton" id="inputAttk">
+        <img src="assets/icons/reticule.png" class="guiIcon"/>
+        attack
+      </button>
+      <button class="battleMode guiButton" id="inputDfnd">
+        <img src="assets/icons/shieldcomb.png" class="guiIcon"/>
+        defend
+      </button>
+      <button class="battleMode guiButton" id="inputChrg">
+        <img src="assets/icons/upgrade.png" class="guiIcon"/>
+        charge
+      </button>
+      <button class="battleMode guiButton" id="inputHeal">
+        <img src="assets/icons/afterburn.png" class="guiIcon"/>
+        retreat
+      </button>
+      <button class="passiveMode guiButton" id="inputFlee">
+        <img src="assets/icons/world.png" class="guiIcon"/>
+        flee
+      </button>
+      <button class="passiveMode guiButton" id="inputStep">
+        <img src="assets/icons/spiky-field.png" class="guiIcon"/>
+        Get Ship
+      </button>
     </section>
     
   </main>
   
   <!-- # Footer Page Info -->
   <footer id="pageInformation" class="guiFooter">
-    <span class="debugVisual">FOOT</span>
+    <!-- <span class="debugVisual">FOOT</span> -->
     <span class="devCredits">Developed By Tesean Ferguson</span>
-    <span>|</span>
+    <div>|</div>
     <span class="assetCredits">Ship Assets by <a href="https://foozlecc.itch.io/">Foozle</a></span>
-    <span>|</span>
+    <div>|</div>
     <span class="assetCredits">UI Assets by <a href="https://rowdy41.itch.io">rowdy41</a></span>
   </footer>
 </body>

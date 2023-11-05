@@ -22,7 +22,7 @@ const ships = {
 function doAlienStep()
 {
   if(currentTurnActor === currentAlien)
-    setTimeout(step, 1800, currentAlien, undefined, currentPlayer);
+    setTimeout(step, 1200, currentAlien, undefined, currentPlayer);
 }
 
 /**

@@ -28,16 +28,19 @@
   margin: 0;
   padding: 0;
   align-items: center; 
+  justify-content: center;
 }
 
 #statsInformation > .shipStats > span > * {
   text-align: left;
   
-  flex-basis: 30%;
+  /* flex-basis: 30%; */
   margin: 0;
   padding: 8px;
+  
+  /* border: 1px solid white; */
 }
 
 #statsInformation > .shipStats > span > p {
-  flex-basis: 70%;
+  /* flex-basis: 70%; */
 }
