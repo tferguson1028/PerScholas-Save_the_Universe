@@ -45,7 +45,6 @@ function battleFinishedSequence()
   {
     shipDefeatedSequence(currentAlien, 1);
     currentAlien = undefined;
-    setInBattle(false);
     return true;
   }
   
@@ -139,8 +138,8 @@ function shipDefeatedSequence(shipObject, section)
     shipSections[section].style.display = "none";
     shipStats[section].style.transform = "scale(1)";
     shipSections[section].style.transform = "scale(1)";
+    setInBattle(false);
   }, 1000);
-  setInBattle(false);
 }
 
 /**

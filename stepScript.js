@@ -15,7 +15,7 @@ function validActor(actor) { return (actor instanceof Ship); }
 function step(currentActor, action, currentReceiver = undefined)
 {
   if(typeof currentActor === "undefined")
-    return;  
+    return;
     
   if(!(validActor(currentActor)))
   {

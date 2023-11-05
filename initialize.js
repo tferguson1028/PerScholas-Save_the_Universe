@@ -135,6 +135,10 @@ actionButtons["inputAttk"].addEventListener("click", () => {
     return;
   }
 
+  //Case if not in battle
+  if(typeof currentTurnActor === "undefined" || typeof currentTurnReceiver === "undefined" || typeof currentAlien === "undefined")
+    return;
+
   if(step(currentPlayer, actions.attk, currentAlien) === true)
     doAlienStep();
 });
@@ -145,7 +149,10 @@ actionButtons["inputDfnd"].addEventListener("click", () => {
     gameOver();
     return;
   }
-
+  
+  //Case if not in battle
+  if(typeof currentTurnActor === "undefined" || typeof currentTurnReceiver === "undefined" || typeof currentAlien === "undefined")
+    return;
   
   if(step(currentPlayer, actions.dfnd) === true)
     doAlienStep();
@@ -158,6 +165,10 @@ actionButtons["inputHeal"].addEventListener("click", () => {
     gameOver();
     return;
   }
+  
+  //Case if not in battle
+  if(typeof currentTurnActor === "undefined" || typeof currentTurnReceiver === "undefined" || typeof currentAlien === "undefined")
+    return;
   
   if(typeof currentAlien !== "undefined")
   {
@@ -187,6 +198,10 @@ actionButtons["inputChrg"].addEventListener("click", () => {
     gameOver();
     return;
   }
+  
+  //Case if not in battle
+  if(typeof currentTurnActor === "undefined" || typeof currentTurnReceiver === "undefined" || typeof currentAlien === "undefined")
+    return;
 
   if(step(currentPlayer, actions.chrg) === true)
     doAlienStep();  
