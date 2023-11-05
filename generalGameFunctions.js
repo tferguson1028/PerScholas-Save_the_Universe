@@ -73,7 +73,6 @@ function alternateTurn()
  */
 function retreatSequence()
 {
-  //TODO
   if(typeof currentAlien === "undefined")
     printConsoleMessage(`${stringAsName(currentPlayer.name)} flees from the battle to recuperate their hull integrity. The alien fleet continues to grow.`);
   

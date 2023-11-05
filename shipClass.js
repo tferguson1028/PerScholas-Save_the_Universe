@@ -103,9 +103,9 @@ class EnemyShip extends Ship
   {
     super(
       EnemyShip.names[Math.floor(Math.random()*EnemyShip.names.length)],
-      Number(((Math.random()*3+3)*Math.max(1, 1+(difficulty/10))).toFixed(2)),
-      Number(((Math.random()*2+2)*Math.max(1, 1+(difficulty/10))).toFixed(2)),
-      Number(((Math.random()*.2+.6)*Math.max(1, 1+(difficulty/100))).toFixed(2))
+      Number(((Math.random()*(6-3)+3)*Math.max(1, 1+(difficulty/18))).toFixed(2)),
+      Number(((Math.random()*(4-2)+2)*Math.max(1, 1+(difficulty/20))).toFixed(2)),
+      Number(((Math.random()*(.8-.6)+.6)*Math.max(1, 1+(difficulty/180))).toFixed(2))
     );
   }
 }
