@@ -6,7 +6,14 @@
 /* # Button Stuff */
 /* After an hour of trying to find the things I was looking for, I accidentally found it */
 html * {
-  font-family: "Pixantiqua" !important;
+  font-family: "Pixantiqua", Arial, Helvetica, sans-serif !important;
+  text-rendering: optimizeSpeed !important;
+  letter-spacing: .2px !important;
+}
+
+h1, h2, h3, h4, h5, h6{
+  letter-spacing: 2.2px !important;
+  font-size: 14pt;
 }
 
 .guiIcon {
@@ -85,7 +92,9 @@ html * {
 
 .guiSection#console *{
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 0 12px !important;
+  
+  font-size: 12pt !important;
   
 }
 
