@@ -133,11 +133,13 @@ actionButtons["inputDfnd"].addEventListener("click", () => {
     return;
   }
 
-  step(currentPlayer, actions.dfnd);
-  doAlienStep();
+  
+  if(step(currentPlayer, actions.dfnd) === true)
+    doAlienStep();
 });
 
 actionButtons["inputHeal"].addEventListener("click", () => {
+  // Heal is retreat now
   if(gameFinished)
   {
     gameOver();
@@ -163,7 +165,7 @@ actionButtons["inputHeal"].addEventListener("click", () => {
   
   step(currentPlayer, actions.heal);
   alternateTurn();
-  // doAlienStep();
+  // doAlienStep(); // Heal is retreat now alien doesn't need a turn.
 });
 
 actionButtons["inputChrg"].addEventListener("click", () => {
@@ -173,8 +175,8 @@ actionButtons["inputChrg"].addEventListener("click", () => {
     return;
   }
 
-  step(currentPlayer, actions.chrg);
-  doAlienStep();  
+  if(step(currentPlayer, actions.chrg) === true)
+    doAlienStep();  
 });
 
 //This is debug visual helper. If button is pressed, toggle debug view.
