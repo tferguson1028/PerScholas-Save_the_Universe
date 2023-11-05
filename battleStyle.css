@@ -28,6 +28,9 @@
   padding: 2px;
 
   overflow: visible;
+
+  background-image: url("assets/backgrounds/space/space.png");
+  background-size: 140%;
 }
 
 #battleVisuals > .shipView > * {

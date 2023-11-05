@@ -167,6 +167,7 @@ function attachShip(shipObject, section, shipType = -1, shipVersion = -1, name =
   nameDiv.textContent = stringAsName(name);
   imageDiv.src = shipImage;
   selectedShipSection.style.visibility = "visible";
+  selectedShipSection.style.backgroundSize = `${Math.floor(Math.random()*(200-120)+120)}%`;
 }
 
 /**
