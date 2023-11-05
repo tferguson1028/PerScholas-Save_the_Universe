@@ -54,7 +54,7 @@ actionButtons["inputStep"].addEventListener("click", function(event)
     updateHullVisuals(currentPlayer, 0);
     
     //Apparently currentTarget has better functionality
-    event.currentTarget.innerHTML = "<img src=\"assets/icons/alien-fire_pixelated.png\" class=\"guiIcon\"/><span>embark</span>";
+    event.currentTarget.innerHTML = "<img src=\"assets/icons/alien-fire_pixelated-colored.png\" class=\"guiIcon\"/><span>embark</span>";
   }else if(typeof currentAlien === 'undefined')
   {
     if(alienCount >= numAliens)
@@ -80,7 +80,7 @@ actionButtons["inputStep"].addEventListener("click", function(event)
     printConsoleMessage(`The ${toOrdinal(++alienCount)} enemy vessel has appeared to block your path! What will you do?`);
     updateHullVisuals(currentAlien, 1);
     setInBattle(true);
-    event.currentTarget.innerHTML = "<img src=\"assets/icons/alien-fire_pixelated.png\" class=\"guiIcon\"/><span>onwards</span>"
+    event.currentTarget.innerHTML = "<img src=\"assets/icons/alien-fire_pixelated-colored.png\" class=\"guiIcon\"/><span>onwards</span>"
   }else
   {
     console.log(typeof currentAlien);
