@@ -81,9 +81,7 @@ h1, h2, h3, h4, h5, h6{
   font-weight: bold !important;
   letter-spacing: 2.5px !important;
 
-  color: #BA976D !important;
-  /* opacity: 80%; */
-  
+  color: #BA976D !important;  
   text-shadow: 0px -2px 0px #5a5146;
 }
 
@@ -97,10 +95,6 @@ h1, h2, h3, h4, h5, h6{
 
 .guiButton:hover > img {
   filter: drop-shadow(0px -1px #5a5146) brightness(200%);
-}
-
-.guiButton:active > span {
-
 }
 
 
@@ -145,13 +139,11 @@ h1, h2, h3, h4, h5, h6{
   margin: 0 !important;
   padding: 0 18px !important;  
   font-size: 12pt !important;
-  /* background-origin: border-box; */
 }
 
 
 /* # Header Stuff */
 .guiHeader {
-  /* margin: 32px; */
   background: none !important;
   border: 1px solid #000000 !important;
   border-width: 4px 0px 4px 0px !important;
