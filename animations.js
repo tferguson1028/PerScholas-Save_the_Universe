@@ -33,18 +33,18 @@ function updateBackground()
 }
 
 let fogFrame = 0;
-let fogSpeed = 0.05;
+let fogSpeed = 0.002;
 function moveSpaceDust()
 {
   fogFrame = (fogFrame+fogSpeed)%frameCount;
   let frameRatio = (fogFrame*2)/frameCount
   let sinXHelper = Math.PI*(frameRatio);
-  spaceDust.style.transform = `translate(${(Math.sin(sinXHelper)*100)-100}px, ${Math.sin(sinXHelper*100)}px`;
+  spaceDust.style.backgroundPosition = `${(Math.sin(sinXHelper)*500)}px ${Math.sin(sinXHelper*4)*100}px`;
 }
 
 function twinkleStars()
 {
-  stars.style.transform = `translate(${Math.sin((frame*2)/frameCount*Math.PI)/10}px, ${Math.cos((frame*2)/frameCount*Math.PI)/10}px)`;
+  stars.style.backgroundPosition = `${Math.sin((frame*2)/frameCount*Math.PI)/10}px ${Math.cos((frame*2)/frameCount*Math.PI)/10}px`;
 }
 
 let shipFrame = 0;

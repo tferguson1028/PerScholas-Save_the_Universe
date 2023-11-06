@@ -180,6 +180,7 @@ function attachShip(shipObject, section, shipType = -1, shipVersion = -1, name =
   selectedShipSection.style.display = "flex";
   selectedShipSection.style.transform = "scale(1)";
   selectedShipSection.style.backgroundSize = `${Math.floor(Math.random()*(200-120)+120)}%`;
+  selectedShipSection.style.backgroundPosition = `${Math.floor(Math.random()*(200-120)+120)}% ${Math.floor(Math.random()*(200-120)+120)}%`;
   selectedShipSection.querySelector(".shipHealth").style.transition =  "0.2s ease-out";
 }
 
